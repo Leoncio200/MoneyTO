@@ -43,7 +43,6 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -57,13 +56,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Splash\MoneyTakeOver.jpg" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Resource Include="Resources\Splash\moneyTakeOver.jpg">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Resource>
+	  <None Remove="Resources\Images\money_logo.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,9 +74,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Splash.xaml">
+	  <MauiXaml Update="Views\CambioBase.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\Splash\money_to.jpg" Color="#512BD4" BaseSize="128,128" />
 	</ItemGroup>
 
 </Project>

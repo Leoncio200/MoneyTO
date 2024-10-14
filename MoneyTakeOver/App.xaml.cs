@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            MainPage = new Views.Splash();
+            MainPage = new MainPage();
         }
     }
 }
