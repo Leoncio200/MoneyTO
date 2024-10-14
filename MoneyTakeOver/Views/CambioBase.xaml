@@ -9,7 +9,19 @@
             <Image Source="dotnet_bot.png" />
             <Label Text="Cambio Base"/>
         </StackLayout>
-        
-        
+
+        <StackLayout>
+            <Label Text="Elige la moneda de base"/>
+        </StackLayout>
+    
+        <StackLayout>
+            <Picker />
+        </StackLayout>
+
+        <StackLayout Margin="20,0">
+            <Button Text="Cancelar" BackgroundColor="PaleGreen" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Aceptar" BackgroundColor="Firebrick" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    
     </StackLayout>
 </ContentPage>
