@@ -12,7 +12,7 @@
 
         <StackLayout VerticalOptions="FillAndExpand" Margin="20,30,20,0">
             <Label Text="Elige la moneda de base" HeightRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="ForestGreen"/>
-            <Picker VerticalOptions="StartAndExpand"/>
+            <Picker VerticalOptions="StartAndExpand" Title="Origen"/>
         </StackLayout>
 
         <StackLayout VerticalOptions="FillAndExpand">
