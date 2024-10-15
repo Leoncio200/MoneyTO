@@ -6,21 +6,20 @@
     <StackLayout>
         
         <StackLayout Orientation="Horizontal">
-            <Image Source="dotnet_bot.png" />
-            <Label Text="Cambio Base"/>
+            <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
+            <Label Text="Cambio Base" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="30" TextColor="ForestGreen"/>
         </StackLayout>
 
-        <StackLayout>
-            <Label Text="Elige la moneda de base"/>
-        </StackLayout>
-    
-        <StackLayout>
-            <Picker />
+        <StackLayout VerticalOptions="FillAndExpand" Margin="20,30,20,0">
+            <Label Text="Elige la moneda de base" HeightRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="ForestGreen"/>
+            <Picker VerticalOptions="StartAndExpand"/>
         </StackLayout>
 
-        <StackLayout Margin="20,0">
-            <Button Text="Cancelar" BackgroundColor="PaleGreen" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Aceptar" BackgroundColor="Firebrick" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout Margin="20,0" Orientation="Horizontal" Spacing="10">
+                <Button Text="Cancelar" BackgroundColor="Firebrick" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Aceptar" BackgroundColor="PaleGreen" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
         </StackLayout>
     
     </StackLayout>

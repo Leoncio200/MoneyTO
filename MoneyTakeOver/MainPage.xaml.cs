@@ -15,7 +15,7 @@ namespace MoneyTakeOver
         
         private void OnCounterClicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new NavigationPage(new Cambio());
+            App.Current.MainPage = new NavigationPage(new CambioBase());
         }
     }
 

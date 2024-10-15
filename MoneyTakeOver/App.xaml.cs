@@ -1,4 +1,6 @@
-﻿namespace MoneyTakeOver
+﻿using MoneyTakeOver.Views;
+
+namespace MoneyTakeOver
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new CambioBase();
         }
     }
 }
