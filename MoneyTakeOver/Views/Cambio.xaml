@@ -3,14 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Cambio"
              Title="Cambio">
-    <VerticalStackLayout>
-        
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+   <VerticalStackLayout Padding="30" Spacing="20">
 
-            <Button StyleClass="FilledButton" Text="Filled Button" />
+        <!-- Logo -->
+        <Image Source="dotnet_bot.png" 
+               HeightRequest="100" 
+               Aspect="AspectFit"
+               HorizontalOptions="Center"/>
+
+        <!-- Título -->
+        <Label Text="Cambio" 
+               FontSize="32" 
+               HorizontalOptions="Center" 
+               TextColor="DarkGreen" />
+
+        <!-- Campo de Cantidad -->
+        <Label Text="Cantidad (MXN)" FontSize="14" />
+        <Entry x:Name="CantidadEntry" 
+               Placeholder="$ 1.00" 
+               Keyboard="Numeric" 
+               TextColor="Black" />
+
+        <!-- Selector de Destino -->
+        <Label Text="Destino" FontSize="14" />
+        <Picker x:Name="DestinoPicker" 
+                Title="Selecciona una divisa" 
+                SelectedIndexChanged="OnDestinoChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Dólar(USD)</x:String>
+                    <x:String>Peso(MXN)</x:String>
+                    <x:String>Euro(EUR)</x:String>
+                    <x:String>Yen(JP)</x:String>
+                    <x:String>Renminbi(CNY)</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <!-- Resultado de Conversión -->
+        <Label Text="Cambio a Dólares (USD)" FontSize="14" />
+        <Label x:Name="ResultadoLabel" 
+               Text="$ 0.00" 
+               FontSize="18" 
+               TextColor="Green"
+               HorizontalOptions="Center" />
+
+        <!-- Botón de Aceptar -->
+        <Button Text="Aceptar" 
+                BackgroundColor="LightGreen" 
+                TextColor="White" 
+                Clicked="OnAceptarClicked" />
 
     </VerticalStackLayout>
+
 </ContentPage>
