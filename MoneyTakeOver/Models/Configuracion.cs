@@ -13,7 +13,6 @@ namespace MoneyTakeOver.Models
         [Key]
         public int Id { get; set; }
 
-
         public int TipoCambioBaseId { get; set; }
 
         [ForeignKey("TipoCambioBaseId")]

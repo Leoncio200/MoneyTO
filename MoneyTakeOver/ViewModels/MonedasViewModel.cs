@@ -11,7 +11,7 @@ using System.Text;
 
 namespace MoneyTakeOver.ViewModels
 {
-    public class MonedasViewModel : INotifyPropertyChanged
+    /*public class MonedasViewModel : INotifyPropertyChanged
     {
         private readonly DivisasDbContext _dbContext;
         private ObservableCollection<Monedas> _divisas;
@@ -295,5 +295,5 @@ namespace MoneyTakeOver.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-    }
+    }*/
 }

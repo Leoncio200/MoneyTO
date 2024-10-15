@@ -18,8 +18,9 @@
         <StackLayout VerticalOptions="FillAndExpand">
             <StackLayout Margin="20,0" Orientation="Horizontal" Spacing="10">
                 <Button Text="Cancelar" BackgroundColor="Firebrick" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
-                <Button Text="Aceptar" BackgroundColor="PaleGreen" CornerRadius="100" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Aceptar" BackgroundColor="PaleGreen" CornerRadius="100" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked"/>
             </StackLayout>
+            
         </StackLayout>
     
     </StackLayout>

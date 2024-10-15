@@ -9,7 +9,6 @@ namespace MoneyTakeOver.Models
         [Key]
         public int Id { get; set; }
 
-
         public int ConfiguracionId { get; set; }
 
         [ForeignKey("ConfiguracionId")]
