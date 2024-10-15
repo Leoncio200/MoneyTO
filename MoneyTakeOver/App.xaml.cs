@@ -8,7 +8,7 @@ namespace MoneyTakeOver
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new CambioBase());
+            MainPage = new NavigationPage(new CambioBase()); 
         }
     }
 }
