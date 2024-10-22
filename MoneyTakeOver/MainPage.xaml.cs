@@ -1,5 +1,4 @@
-﻿using MauiApp1;
-using MoneyTakeOver.Views;
+﻿using MoneyTakeOver.Views;
 
 namespace MoneyTakeOver
 {

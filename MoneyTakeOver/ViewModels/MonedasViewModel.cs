@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using MoneyTakeOver.Models;
+using MoneyTakeOver.Helpers;
 using MoneyTakeOver.DataAccess;
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Text;
 
 namespace MoneyTakeOver.ViewModels
 {
-    /*public class MonedasViewModel : INotifyPropertyChanged
+    public class MonedasViewModel : INotifyPropertyChanged
     {
         private readonly DivisasDbContext _dbContext;
         private ObservableCollection<Monedas> _divisas;
@@ -48,7 +49,7 @@ namespace MoneyTakeOver.ViewModels
                 {
                     if (!_isLoading)
                     {
-                        GetDivisas();
+                        Task task = GetDivisas(); //corregir bien
                     }
                 }
             }
@@ -270,7 +271,7 @@ namespace MoneyTakeOver.ViewModels
             _dbContext = dbContext;
             Divisas = new ObservableCollection<Monedas>();
             TxtSearch = string.Empty;
-            GetDatosAsync();
+            Task task = GetDatosAsync(); //corregir bien
         }
 
         public async Task GetDatosAsync()
@@ -295,5 +296,5 @@ namespace MoneyTakeOver.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-    }*/
+    }
 }
