@@ -11,4 +11,9 @@ public partial class CambioBase : ContentPage
     {
         await Navigation.PushAsync(new Cambio());
     }
+
+    private async void Button_Clicked_1(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Configuracion());
+    }
 }

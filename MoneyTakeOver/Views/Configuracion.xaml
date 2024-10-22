@@ -1,12 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Configuracion"
+             x:Class="MoneyTakeOver.Views.Configuracion"
              Title="Configuracion">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+   
+    <StackLayout Padding="20" Spacing="15">
+        
+        <!-- Logo y título -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="logo.png" WidthRequest="80" HeightRequest="80"/>
+            <Label Text="Configuracion" 
+                   FontAttributes="Bold" 
+                   FontSize="24"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <!-- Tarjeta de información -->
+        <Frame BorderColor="LightGray" CornerRadius="10" Padding="15">
+            <StackLayout Spacing="10">
+                
+                <!-- Logo pequeño -->
+                <Image Source="small_logo.png" WidthRequest="50" HeightRequest="50"/>
+
+                <!-- Nombre de empresa y ubicación -->
+                <StackLayout>
+                    <Label Text="Money Takeover" FontAttributes="Bold" FontSize="18"/>
+                    <Label Text="Torreón" FontAttributes="Bold" FontSize="16" TextColor="Gray"/>
+                </StackLayout>
+
+                <!-- Ubicación y horario -->
+                <StackLayout>
+                    <Label Text="Torreón, Coahuila" FontSize="14"/>
+                    <Label Text="Horario: 9:00 a 20:00" FontSize="14"/>
+                    <Label Text="Carr. Torreón - Matamoros S/N-Km 10, Ejido el Águila, 27400 Torreón, Coah." 
+                           FontSize="14"/>
+                </StackLayout>
+
+                <!-- Botón de edición -->
+                <Button Text="Editar" BackgroundColor="Green" TextColor="White" CornerRadius="20" Clicked="Button_Clicked"/>
+            </StackLayout>
+        </Frame>
+        
+    </StackLayout>
+
 </ContentPage>

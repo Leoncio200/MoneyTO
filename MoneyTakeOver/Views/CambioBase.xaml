@@ -8,8 +8,8 @@
         <StackLayout Orientation="Horizontal">
             <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
             <Label Text="Cambio Base" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="30" TextColor="ForestGreen"/>
-        </StackLayout>
-
+       </StackLayout>
+        
         <StackLayout VerticalOptions="FillAndExpand" Margin="20,30,20,0">
             <Label Text="Elige la moneda de base" HeightRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="ForestGreen"/>
             <Picker VerticalOptions="StartAndExpand" Title="Origen"/>

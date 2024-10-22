@@ -8,7 +8,8 @@ namespace MoneyTakeOver
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new CambioBase()); 
+            // Configura AppShell como la página principal
+            MainPage = new AppShell();
         }
     }
 }
