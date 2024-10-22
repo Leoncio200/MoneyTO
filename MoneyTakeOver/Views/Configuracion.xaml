@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Models="clr-namespace:MoneyTakeOver.Models"
+             x:Class="MoneyTakeOver.Views.Configuracion"
+             Title="Configuracion" NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
+            <Label Text="Configuracion" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="30" TextColor="ForestGreen"/>
+        </StackLayout>
+
+        <Frame Margin="20">
+            <StackLayout>
+                <HorizontalStackLayout>
+                    <Frame HeightRequest="50" WidthRequest="50" Padding="0" CornerRadius="25">
+                        <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="30"/>
+                    </Frame>
+
+                    <VerticalStackLayout>
+                        <Label Text="Money Takeover"/>
+                        <Label Text="Torreón"/>
+                    </VerticalStackLayout>
+
+                    <StackLayout>
+                        <Button Text="{x:Static Models:IconFont.Angular}" FontFamily="FABrands"/>
+                    </StackLayout>
+                    
+                </HorizontalStackLayout>
+
+                <StackLayout>
+
+                </StackLayout>
+
+                <Button />
+            </StackLayout>
+        </Frame>
+        
+    </StackLayout>
+</ContentPage>

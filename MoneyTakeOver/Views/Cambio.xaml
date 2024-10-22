@@ -3,48 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls ="clr-namespace:MoneyTakeOver.Controls"
              x:Class="MoneyTakeOver.Views.Cambio"
-             Title="Cambio">
-    <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
-            <Label Text="Cambio Base" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="30" TextColor="ForestGreen"/>
-        </StackLayout>
+             Title="Cambio" NavigationPage.HasNavigationBar="False">
+    <AbsoluteLayout>
 
-        <StackLayout Margin="50,0" VerticalOptions="FillAndExpand">
-            <Frame>
-                <VerticalStackLayout>
-                    <Label Text="Cambio a Dólares (USD)" 
-                       FontAttributes="Bold"
-                       FontSize="Small"/>
-                    <controls:Input Placeholder="Hola Developper"/>
-                </VerticalStackLayout>
-            </Frame>
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
+                <Label Text="Cambio Base" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="30" TextColor="ForestGreen"/>
+            </StackLayout>
 
-            <StackLayout VerticalOptions="FillAndExpand" Margin="0,30,0,0">
+            <StackLayout Margin="50,0" VerticalOptions="FillAndExpand">
                 <Frame>
-                    <Picker >
-
-                    </Picker>
+                    <VerticalStackLayout>
+                        <Label Text="Cambio a Dólares (USD)" 
+               FontAttributes="Bold"
+               FontSize="Small"/>
+                        <controls:Input Placeholder="Hola Developper"/>
+                    </VerticalStackLayout>
                 </Frame>
 
-                <StackLayout VerticalOptions="EndAndExpand">
-                    <Frame>
-                        <VerticalStackLayout>
-                            <Label Text="Cambio a Dólares (USD)" 
-                               FontAttributes="Bold"
-                               FontSize="Small"/>
-                            <Label Text="$ 19.00" 
-                                FontSize="Medium"/>
-                        </VerticalStackLayout>
+                <StackLayout VerticalOptions="FillAndExpand" Margin="0,30,0,0">
+                    <Frame >
+                        <Picker >
+
+                        </Picker>
                     </Frame>
+
+                    <StackLayout VerticalOptions="EndAndExpand">
+                        <Frame>
+                            <VerticalStackLayout>
+                                <Label Text="Cambio a Dólares (USD)" 
+                       FontAttributes="Bold"
+                       FontSize="Small"/>
+                                <Label Text="$ 19.00" 
+                        FontSize="Medium"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                    <Button Text="Aceptar" BackgroundColor="PaleGreen" HorizontalOptions="CenterAndExpand" WidthRequest="150" />
                 </StackLayout>
             </StackLayout>
+        </StackLayout>
 
-            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                <Button Text="Aceptar" BackgroundColor="PaleGreen" HorizontalOptions="CenterAndExpand" WidthRequest="150" />
+        <StackLayout BackgroundColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout VerticalOptions="CenterAndExpand" >
+                <StackLayout>
+                    <Label Text="Cambio Realizado!" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Small"/>
+                    <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
+                    <Label Text="Money Bank" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Small"/>
+                </StackLayout>
+
+                <HorizontalStackLayout Margin="0,50,0,0" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Regresar" CornerRadius="22" BackgroundColor="PaleGreen" FontAttributes="Bold" Clicked="Button_Clicked"/>
+                </HorizontalStackLayout>
+                
             </StackLayout>
         </StackLayout>
-    </StackLayout>
+        
+    </AbsoluteLayout>
+
+
     <!--<VerticalStackLayout Padding="30" Spacing="20">
 
         <Image Source="dotnet_bot.png" 

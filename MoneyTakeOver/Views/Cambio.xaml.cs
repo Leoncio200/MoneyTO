@@ -36,4 +36,9 @@ public partial class Cambio : ContentPage
         // Lógica a ejecutar cuando el usuario presiona "Aceptar"
         DisplayAlert("Confirmación", "Conversión aceptada.", "OK");
     }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Configuracion());
+    }
 }

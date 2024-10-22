@@ -57,6 +57,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Font-Awesome-6-Brands-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font-Awesome-6-Free-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font-Awesome-6-Free-Solid-900.otf" />
 	  <None Remove="Resources\Images\money_logo.png" />
 	</ItemGroup>
 
@@ -74,6 +77,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CodigosPrueba.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Configuracion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
