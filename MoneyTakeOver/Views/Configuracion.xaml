@@ -9,7 +9,7 @@
         <!-- Logo y título -->
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <Image Source="logo.png" WidthRequest="80" HeightRequest="80"/>
-            <Label Text="Configuracion" 
+            <Label Text="Información de la Empresa" 
                    FontAttributes="Bold" 
                    FontSize="24"
                    HorizontalOptions="Center"/>

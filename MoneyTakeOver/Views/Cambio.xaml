@@ -1,103 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls ="clr-namespace:MoneyTakeOver.Controls"
+             xmlns:controls="clr-namespace:MoneyTakeOver.Controls"
              x:Class="MoneyTakeOver.Views.Cambio"
-              NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False">
     <AbsoluteLayout>
-        
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Spacing="20">
 
-        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
-            <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
-       </StackLayout>
-           
-            <StackLayout Margin="50,10" VerticalOptions="FillAndExpand">
-                
-                    <VerticalStackLayout>
-                        <Label Text="Cambio a Dólares (USD)" 
-               FontAttributes="Bold" Margin="   0,0,0,10"
-               FontSize="Small"/>
-                        <controls:Input Placeholder="Ingresa la cantidad a convertir"/>
-                    </VerticalStackLayout>
-              
-
-                <StackLayout VerticalOptions="FillAndExpand" Margin="0,30,0,0">
-                    <!-- <Frame >
-                        <Picker >
-
-                        </Picker>
-                    </Frame> -->
-
-                    <StackLayout VerticalOptions="EndAndExpand">
-                        <Frame>
-                            <VerticalStackLayout>
-                                <Label Text="Cambio a Dólares (USD)" 
-                       FontAttributes="Bold"
-                       FontSize="18"/>
-                                <Label Text="$ 19.00" 
-                        FontSize="Medium"/>
-                            </VerticalStackLayout>
-                        </Frame>
-                    </StackLayout>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                    <Button Text="Aceptar" BackgroundColor="Green" HorizontalOptions="CenterAndExpand" WidthRequest="150" Clicked="Button_Clicked"/>
-                </StackLayout>
+            <!-- Logo -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start" Margin="10">
+                <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
             </StackLayout>
+
+            <!-- Entrada de Cantidad a convertir -->
+            <VerticalStackLayout Margin="30,10" Spacing="10">
+                <Label Text="Ingresa la cantidad a convertir:" 
+                       FontAttributes="Bold" 
+                       FontSize="18"/>
+                <controls:Input Placeholder="Ejemplo 19.30"/>
+            </VerticalStackLayout>
+
+            <!-- Resultado del Cambio -->
+            <Frame Margin="30,20" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Tu cambio es:" 
+                           FontAttributes="Bold" 
+                           FontSize="18"/>
+                    <Label Text="$ 19.00" 
+                           FontSize="Medium"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Botón Aceptar -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="30,10">
+                <Button Text="Aceptar" 
+                        BackgroundColor="Green" 
+                        CornerRadius="20" 
+                        HorizontalOptions="FillAndExpand" 
+                        Clicked="Button_Clicked"/>
+            </StackLayout>
+
         </StackLayout>
-
-      
-        
     </AbsoluteLayout>
-
-
-    <!--<VerticalStackLayout Padding="30" Spacing="20">
-
-        <Image Source="dotnet_bot.png" 
-               HeightRequest="100" 
-               Aspect="AspectFit"
-               HorizontalOptions="Center"/>
-
-        <Label Text="Cambio" 
-               FontSize="32" 
-               HorizontalOptions="Center" 
-               TextColor="DarkGreen" />
-
-        <Label Text="Cantidad (MXN)" FontSize="14" />
-        <Entry x:Name="CantidadEntry" 
-               Placeholder="$ 1.00" 
-               Keyboard="Numeric" 
-               TextColor="Black" />
-
-        <Label Text="Destino" FontSize="14" />
-        <Picker x:Name="DestinoPicker" 
-                Title="Selecciona una divisa" 
-                SelectedIndexChanged="OnDestinoChanged">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Dólar(USD)</x:String>
-                    <x:String>Peso(MXN)</x:String>
-                    <x:String>Euro(EUR)</x:String>
-                    <x:String>Yen(JP)</x:String>
-                    <x:String>Renminbi(CNY)</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-
-        <Label Text="Cambio a Dólares (USD)" FontSize="14" />
-        <Label x:Name="ResultadoLabel" 
-               Text="$ 0.00" 
-               FontSize="18" 
-               TextColor="Green"
-               HorizontalOptions="Center" />
-
-        <Button Text="Aceptar" 
-                BackgroundColor="LightGreen" 
-                TextColor="White" 
-                Clicked="OnAceptarClicked" />
-
-    </VerticalStackLayout>-->
-
 </ContentPage>

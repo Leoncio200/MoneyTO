@@ -7,7 +7,12 @@
 
     <!-- Definición de las pestañas -->
     <TabBar>
-        <Tab Title="Cotizacion" >   
+        <Tab Title="Cotizacion" 
+            >
+        
+
+            
+            
             
             <ShellContent ContentTemplate="{DataTemplate views:CambioBase}"
                  />
