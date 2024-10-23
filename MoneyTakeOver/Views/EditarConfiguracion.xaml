@@ -2,69 +2,67 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyTakeOver.Views.EditarConfiguracion"
-             Title="EditarConfiguracion">
+             Title="EditarConfiguracion"
+              NavigationPage.HasNavigationBar="False">
 
     <ScrollView>
         <StackLayout Padding="20" Spacing="25" VerticalOptions="CenterAndExpand">
 
             <!-- Logo y título -->
             <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                <Image Source="logo.png" WidthRequest="100" HeightRequest="100"/>
-                <Label Text="Configuracion"
+                <Image Source="money_logo.jpg" WidthRequest="100" HeightRequest="100" Aspect="AspectFit"/>
+                <Label Text="Editar Configuración"
                        FontAttributes="Bold"
-                       FontSize="28"
+                       FontSize="30"
                        HorizontalOptions="Center"
-                       TextColor="Teal"/>
+                       TextColor="ForestGreen"/>
             </StackLayout>
 
-            <!-- Tarjeta de Dirección -->
-            <Frame BorderColor="LightGray" CornerRadius="15" Padding="10" HasShadow="True">
+            <!-- Tarjeta de Dirección (editable) -->
+           
                 <StackLayout>
-                    <Label Text="Dirección" FontAttributes="Bold" FontSize="14" TextColor="Gray"/>
-                    <Label Text="Calle de las noas" FontSize="18"/>
+                    <Label Text="Dirección" FontAttributes="Bold" FontSize="14" TextColor="ForestGreen"/>
+                    <Entry Placeholder="Calle de las noas" Text="Calle de las noas" FontSize="18"/>
                 </StackLayout>
-            </Frame>
+            
 
-            <!-- Tarjeta de Ciudad -->
-            <Frame BorderColor="LightGray" CornerRadius="15" Padding="10" HasShadow="True">
+            <!-- Tarjeta de Ciudad (editable) -->
+           
                 <StackLayout>
-                    <Label Text="Ciudad" FontAttributes="Bold" FontSize="14" TextColor="Gray"/>
-                    <Label Text="Matamoros" FontSize="18"/>
+                    <Label Text="Ciudad" FontAttributes="Bold" FontSize="14" TextColor="ForestGreen"/>
+                    <Entry Placeholder="Matamoros" Text="Matamoros" FontSize="18"/>
                 </StackLayout>
-            </Frame>
+            
 
-            <!-- Tarjeta de Estado -->
-            <Frame BorderColor="LightGray" CornerRadius="15" Padding="10" HasShadow="True">
+            <!-- Tarjeta de Estado (editable) -->
+           
                 <StackLayout>
-                    <Label Text="Estado" FontAttributes="Bold" FontSize="14" TextColor="Gray"/>
-                    <Label Text="Coahuila" FontSize="18"/>
+                    <Label Text="Estado" FontAttributes="Bold" FontSize="14" TextColor="ForestGreen"/>
+                    <Entry Placeholder="Coahuila" Text="Coahuila" FontSize="18"/>
                 </StackLayout>
-            </Frame>
+            
 
-            <!-- Horario de Inicio -->
-            <Frame BorderColor="LightGray" CornerRadius="15" Padding="10" HasShadow="True">
+            <!-- Horario de Inicio (editable) -->
+           
                 <StackLayout>
-                    <Label Text="Horario (Hora Inicio)" FontAttributes="Bold" FontSize="14" TextColor="Gray"/>
-                    <Label Text="7:00" FontSize="18"/>
+                    <Label Text="Horario (Hora Inicio)" FontAttributes="Bold" FontSize="14" TextColor="ForestGreen"/>
+                    <Entry Placeholder="7:00" Text="7:00" FontSize="18"/>
                 </StackLayout>
-            </Frame>
+            
 
-            <!-- Horario de Cierre -->
-            <Frame BorderColor="LightGray" CornerRadius="15" Padding="10" HasShadow="True">
+            <!-- Horario de Cierre (editable) -->
+           
                 <StackLayout>
-                    <Label Text="Horario (Hora Cierre)" FontAttributes="Bold" FontSize="14" TextColor="Gray"/>
-                    <Label Text="7:00" FontSize="18"/>
+                    <Label Text="Horario (Hora Cierre)" FontAttributes="Bold" FontSize="14" TextColor="ForestGreen"/>
+                    <Entry Placeholder="7:00" Text="7:00" FontSize="18"/>
                 </StackLayout>
-            </Frame>
+            
 
             <!-- Botón Guardar -->
-            <Button Text="Guardar"
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    CornerRadius="30"
-                    HeightRequest="50"
-                    HorizontalOptions="FillAndExpand"
-                    FontSize="18"/>
+            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand">
+                <Button Text="Cancelar" BackgroundColor="Firebrick" CornerRadius="20" HeightRequest="50" FontSize="18" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Guardar" BackgroundColor="Green" CornerRadius="20" HeightRequest="50" FontSize="18" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
 
         </StackLayout>
     </ScrollView>

@@ -2,17 +2,23 @@
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:MoneyTakeOver.Views"
+       xmlns:local="clr-namespace:MoneyTakeOver.Models"
        x:Class="MoneyTakeOver.AppShell">
 
     <!-- Definición de las pestañas -->
     <TabBar>
+        <Tab Title="Cotizacion" >   
+            
+            <ShellContent ContentTemplate="{DataTemplate views:CambioBase}"
+                 />
+        </Tab>
+       
+
         <Tab Title="Configuracion" >
             <ShellContent ContentTemplate="{DataTemplate views:Configuracion}" />
         </Tab>
 
-        <Tab Title="CambioBase" >
-            <ShellContent ContentTemplate="{DataTemplate views:CambioBase}" />
-        </Tab>
+       
     </TabBar>
 
 </Shell>

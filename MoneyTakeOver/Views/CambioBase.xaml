@@ -2,23 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyTakeOver.Views.CambioBase"
-             Title="CambioBase">
+              NavigationPage.HasNavigationBar="False"
+              Title="Money TurnOver">
+              
     <StackLayout>
         
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
             <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
-            <Label Text="Cambio Base" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="30" TextColor="ForestGreen"/>
        </StackLayout>
         
         <StackLayout VerticalOptions="FillAndExpand" Margin="20,30,20,0">
-            <Label Text="Elige la moneda de base" HeightRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="ForestGreen"/>
+            <Label Text="Bienvenido!"  HeightRequest="100" FontSize="24" HorizontalTextAlignment="Center" TextColor="Black"/>
+
+            <Label Text="Elige la moneda de base para empezar la conversión:" HeightRequest="100" FontSize="18" HorizontalTextAlignment="Center" TextColor="Black"/>
             <Picker VerticalOptions="StartAndExpand" Title="Origen"/>
         </StackLayout>
+        
 
-        <StackLayout VerticalOptions="FillAndExpand">
-            <StackLayout Margin="20,0" Orientation="Horizontal" Spacing="10">
-                <Button Text="Cancelar" BackgroundColor="Firebrick" CornerRadius="20" HorizontalOptions="FillAndExpand"/>
-                <Button Text="Aceptar" BackgroundColor="PaleGreen" CornerRadius="20" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked"/>
+        <StackLayout VerticalOptions="FillAndExpand" Margin="10">
+            <StackLayout Margin="10" Orientation="Horizontal" Spacing="10">
+                <Button Text="Aceptar" BackgroundColor="Green" CornerRadius="20" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked"/>
             </StackLayout>
             
         </StackLayout>

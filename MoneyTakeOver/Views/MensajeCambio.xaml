@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyTakeOver.Views.MensajeCambio"
+             NavigationPage.HasNavigationBar="False">
+    <Grid>
+
+        <StackLayout BackgroundColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label Text="Cambio Realizado!" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Small"/>
+                    <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
+                    <Label Text="Money Bank" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Small"/>
+                </StackLayout>
+
+                <HorizontalStackLayout Margin="0,50,0,0" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Regresar" CornerRadius="22" BackgroundColor="Green" FontAttributes="Bold" Clicked="Button_Clicked"/>
+                </HorizontalStackLayout>
+                
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>
