@@ -1,3 +1,6 @@
+using MoneyTakeOver.DataAccess;
+using MoneyTakeOver.ViewModels;
+
 namespace MoneyTakeOver.Views;
 
 public partial class CambioBase : ContentPage
@@ -6,6 +9,10 @@ public partial class CambioBase : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void CargarMonedas()
+    {
+    }
 
     private async void Button_Clicked(object sender, EventArgs e)
     {

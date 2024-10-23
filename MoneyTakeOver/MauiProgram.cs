@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-
+using MoneyTakeOver.DataAccess;
 using UraniumUI;
 using CommunityToolkit.Maui;
 
@@ -25,6 +25,8 @@ namespace MoneyTakeOver
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder.Services.AddDbContext<DivisasDbContext>();
+
             return builder.Build();
         }
     }
