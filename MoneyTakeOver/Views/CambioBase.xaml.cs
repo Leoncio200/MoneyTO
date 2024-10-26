@@ -20,7 +20,7 @@ public partial class CambioBase : ContentPage
     private void CargarMonedas()
     {
         // Llama la tarea para agregar estas monedas
-
+        _dbContext.Database.EnsureCreatedAsync().Wait();
         _ = _monedasViewModel.AgregarTodasLasMonedas();
     }
 
