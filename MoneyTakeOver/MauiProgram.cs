@@ -25,8 +25,8 @@ namespace MoneyTakeOver
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-            builder.Services.AddDbContext<DivisasDbContext>();
 
+            builder.Services.AddDbContext<DivisasDbContext>();
             return builder.Build();
         }
     }

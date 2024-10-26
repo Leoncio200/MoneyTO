@@ -16,6 +16,7 @@ namespace MoneyTakeOver.ViewModels
     {
         private readonly DivisasDbContext _dbContext;
         private ObservableCollection<Monedas> _divisas;
+        private RestService _restService;
         private string _nuevaDivisa;
         private string _search;
         private bool _isDivisasEmpty;
@@ -49,7 +50,7 @@ namespace MoneyTakeOver.ViewModels
                 {
                     if (!_isLoading)
                     {
-                        Task task = GetDivisas(); //corregir bien
+                        _ = GetDivisas();
                     }
                 }
             }
@@ -271,7 +272,7 @@ namespace MoneyTakeOver.ViewModels
             _dbContext = dbContext;
             Divisas = new ObservableCollection<Monedas>();
             TxtSearch = string.Empty;
-            Task task = GetDatosAsync(); //corregir bien
+            _ = GetDatosAsync();
         }
 
         public async Task GetDatosAsync()
@@ -295,6 +296,60 @@ namespace MoneyTakeOver.ViewModels
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        public async Task AgregarTodasLasMonedas()
+        {
+            try
+            {
+                var listMonedas = await _restService.GetDataAsync();
+
+                foreach (var item in listMonedas) 
+                {
+                    new Monedas
+                    {
+
+                    };
+                }
+                // Lista de monedas predefinidas
+                var monedas = new List<Monedas>
+                {
+                    new Monedas { Id = 4, Nombre = "Libra esterlina (GBP)", ActivoDivisa = true },
+                    new Monedas { Id = 5, Nombre = "Dólar canadiense (CAD)", ActivoDivisa = true },
+                    new Monedas { Id = 6, Nombre = "Franco suizo (CHF)", ActivoDivisa = true },
+                    new Monedas { Id = 7, Nombre = "Yuan chino (CNY)", ActivoDivisa = true },
+                    new Monedas { Id = 8, Nombre = "Corona danesa (DKK)", ActivoDivisa = true },
+                    new Monedas { Id = 9, Nombre = "Corona noruega (NOK)", ActivoDivisa = true },
+                    new Monedas { Id = 10, Nombre = "Corona sueca (SEK)", ActivoDivisa = true },
+                    new Monedas { Id = 11, Nombre = "Rublo ruso (RUB)", ActivoDivisa = true },
+                    new Monedas { Id = 12, Nombre = "Real brasileño (BRL)", ActivoDivisa = true },
+                    new Monedas { Id = 13, Nombre = "Dólar australiano (AUD)", ActivoDivisa = true },
+                    new Monedas { Id = 14, Nombre = "Dólar neozelandés (NZD)", ActivoDivisa = true },
+                    new Monedas { Id = 15, Nombre = "Rupia india (INR)", ActivoDivisa = true },
+                    new Monedas { Id = 16, Nombre = "Won surcoreano (KRW)", ActivoDivisa = true },
+                    new Monedas { Id = 17, Nombre = "Dólar de Hong Kong (HKD)", ActivoDivisa = true },
+                    new Monedas { Id = 18, Nombre = "Dólar de Singapur (SGD)", ActivoDivisa = true },
+                    new Monedas { Id = 19, Nombre = "Rand sudafricano (ZAR)", ActivoDivisa = true },
+                    new Monedas { Id = 20, Nombre = "Peso cubano (CUP)", ActivoDivisa = true }
+                    // Agrega las demás monedas según sea necesario
+                };
+
+                // Agregar a la base de datos si no existen
+                foreach (var moneda in monedas)
+                {
+                    if (!_dbContext.Monedas.Any(m => m.Nombre == moneda.Nombre))
+                    {
+                        _dbContext.Monedas.Add(moneda);
+                    }
+                }
+
+                await _dbContext.SaveChangesAsync();
+                await GetDivisas();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al agregar todas las monedas: {ex.Message}");
+            }
         }
     }
 }
