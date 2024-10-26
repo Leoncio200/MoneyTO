@@ -297,24 +297,14 @@ namespace MoneyTakeOver.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
         public async Task AgregarTodasLasMonedas()
+{
+    try
+    {
+        // Lista de monedas predefinidas
+        var monedas = new List<Monedas>
         {
-            try
-            {
-                var listMonedas = await _restService.GetDataAsync();
-
-                foreach (var item in listMonedas) 
-                {
-                    new Monedas
-                    {
-
-                    };
-                }
-                // Lista de monedas predefinidas
-                var monedas = new List<Monedas>
-                {
-                    new Monedas { Id = 4, Nombre = "Libra esterlina (GBP)", ActivoDivisa = true },
+              new Monedas { Id = 4, Nombre = "Libra esterlina (GBP)", ActivoDivisa = true },
                     new Monedas { Id = 5, Nombre = "Dólar canadiense (CAD)", ActivoDivisa = true },
                     new Monedas { Id = 6, Nombre = "Franco suizo (CHF)", ActivoDivisa = true },
                     new Monedas { Id = 7, Nombre = "Yuan chino (CNY)", ActivoDivisa = true },
@@ -331,25 +321,38 @@ namespace MoneyTakeOver.ViewModels
                     new Monedas { Id = 18, Nombre = "Dólar de Singapur (SGD)", ActivoDivisa = true },
                     new Monedas { Id = 19, Nombre = "Rand sudafricano (ZAR)", ActivoDivisa = true },
                     new Monedas { Id = 20, Nombre = "Peso cubano (CUP)", ActivoDivisa = true }
-                    // Agrega las demás monedas según sea necesario
-                };
+            // Agrega las demás monedas según sea necesario
+        };
 
-                // Agregar a la base de datos si no existen
-                foreach (var moneda in monedas)
-                {
-                    if (!_dbContext.Monedas.Any(m => m.Nombre == moneda.Nombre))
-                    {
-                        _dbContext.Monedas.Add(moneda);
-                    }
-                }
-
-                await _dbContext.SaveChangesAsync();
-                await GetDivisas();
-            }
-            catch (Exception ex)
+        foreach (var moneda in monedas)
+        {
+            // Verificar si la moneda ya existe en la base de datos
+            var existeMoneda = await _dbContext.Monedas.AnyAsync(m => m.Nombre == moneda.Nombre);
+            if (!existeMoneda)
             {
-                Console.WriteLine($"Error al agregar todas las monedas: {ex.Message}");
+                // Agregar la moneda si no existe
+                _dbContext.Monedas.Add(moneda);
             }
         }
+
+        // Guardar cambios en la base de datos
+        await _dbContext.SaveChangesAsync();
+        await DialogsHelper.ShowSuccessMessage("Success", "Todas las monedas han sido agregadas exitosamente.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("=== ERROR DETECTADO ===");
+        Console.WriteLine($"Error al procesar la solicitud Message: {ex.Message}");
+        Console.WriteLine($"Error al procesar la solicitud StackTrace: {ex.StackTrace}");
+        Console.WriteLine("=======================");
+        await DialogsHelper.ShowErrorMessage("Error", $"Fallo al procesar la solicitud: {ex.Message}");
+    }
+    finally
+    {
+        DialogsHelper.HideLoadingMessage();
+    }
+}
+
+
     }
 }
