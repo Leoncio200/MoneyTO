@@ -17,6 +17,11 @@
             <ShellContent ContentTemplate="{DataTemplate views:CambioBase}"
                  />
         </Tab>
+
+
+        <Tab Title="Cambio" >
+            <ShellContent ContentTemplate="{DataTemplate views:Monedas}" />
+        </Tab>
        
 
         <Tab Title="Configuracion" >

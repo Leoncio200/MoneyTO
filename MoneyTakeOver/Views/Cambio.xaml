@@ -12,22 +12,59 @@
                 <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
             </StackLayout>
 
-            <!-- Entrada de Cantidad a convertir -->
-            <VerticalStackLayout Margin="30,10" Spacing="10">
-                <Label Text="Ingresa la cantidad a convertir:" 
-                    x:Name="LblCantidad"
+            <!-- Selección de Moneda Base -->
+            <Label Text="Tu moneda base es:" 
+                HorizontalOptions="Center"
                        FontAttributes="Bold" 
                        FontSize="18"/>
-                <controls:Input Placeholder="Ejemplo 19.30"/>
+
+            <Label Text="USD" 
+                x:Name="baseCurrencyLabel"
+                HorizontalOptions="Center"
+
+                       FontSize="Medium"/>
+
+            <Label Text="ID" 
+                       FontAttributes="Bold" 
+                       x:Name="baseCurrencyIdLabel"
+                       FontSize="18"
+                       IsVisible="False"
+                        
+                       HorizontalOptions="Center"/>
+
+
+
+            <!-- Selección de Moneda Objetivo -->
+            <VerticalStackLayout Margin="30,5" Spacing="10">
+                <Label Text="Selecciona la moneda a la que convertir:" 
+                       FontAttributes="Bold" 
+                        HorizontalOptions="Center"
+
+                       FontSize="18"/>
+                          <Picker x:Name="PckOrigenConvertir" ItemsSource="{Binding Divisas}" ItemDisplayBinding="{Binding Nombre}" VerticalOptions="StartAndExpand" Title=""/>
+
+            </VerticalStackLayout>
+
+            <!-- Entrada de Cantidad a Convertir -->
+            <VerticalStackLayout Margin="30,10" Spacing="10">
+                <Label Text="Ingresa la cantidad a convertir:" 
+                       FontAttributes="Bold" 
+
+                       FontSize="18"/>
+                <controls:Input Placeholder="Ejemplo 19.30"
+                                Keyboard="Numeric"
+                                x:Name="cantidadInput"
+                    />
             </VerticalStackLayout>
 
             <!-- Resultado del Cambio -->
-            <Frame Margin="30,20" Padding="10">
+            <Frame Margin="30,5" Padding="10">
                 <VerticalStackLayout>
                     <Label Text="Tu cambio es:" 
                            FontAttributes="Bold" 
                            FontSize="18"/>
                     <Label Text="$ 19.00" 
+                          x:Name="resultadoLabel"
                            FontSize="Medium"/>
                 </VerticalStackLayout>
             </Frame>

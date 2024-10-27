@@ -17,8 +17,10 @@ namespace MoneyTakeOver.Views
             BindingContext = _monedasViewModel;
             CreateDB();
             //eliminar las monedas de la bd
-            _dbContext.Database.ExecuteSqlRaw("DELETE FROM Monedas");
+          //  _dbContext.Database.ExecuteSqlRaw("DELETE FROM Monedas");
+            
             _ = CargarMonedas();
+            _ = CargarTiposCambio();
         }
 
         private async void CreateDB()
@@ -32,12 +34,28 @@ namespace MoneyTakeOver.Views
 
         private async Task CargarMonedas()
         {
-            await _monedasViewModel.GetDatosAsync();
+            await _monedasViewModel.InsertarDivisas();
+
         }
+
+        private async Task CargarTiposCambio()
+        {
+            await _monedasViewModel.AgregarTiposCambio();
+        }
+
+        
+
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Cambio());
+
+            var picker = PckOrigen.SelectedItem.ToString();
+            Console.WriteLine(picker);
+            //pasa la moneda seleccionada a la siguiente pagina
+            var selectedCurrency = picker.Split('-')[0].Trim();
+            //tambien pasar el id de la moneda
+            var selectedCurrencyId = picker.Split('-')[1].Trim();
+            await Navigation.PushAsync(new Cambio(selectedCurrency, selectedCurrencyId));
         }
 
         private async void Button_Clicked_1(object sender, EventArgs e)
