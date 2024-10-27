@@ -1,23 +1,14 @@
 namespace MoneyTakeOver.Views;
 public partial class Cambio : ContentPage
 {
-<<<<<<< HEAD
-	public Cambio()
+	public Cambio(string? monedaSeleccionada)
 	{
 		InitializeComponent();
 	}
-=======
-    private string _monedaSeleccionada;
-    private double _cantidad;
 
-    public Cambio(string monedaSeleccionada)
+    public Cambio()
     {
-        InitializeComponent();
-        _monedaSeleccionada = monedaSeleccionada;
-        LblCantidad.Text = monedaSeleccionada;
     }
->>>>>>> b5adad7 (push)
-
     private void OnDestinoChanged(object sender, EventArgs e)
     {
         string monedaDestino = (string)((Picker)sender).SelectedItem;
