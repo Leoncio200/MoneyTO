@@ -32,12 +32,44 @@ public partial class CambioBase : ContentPage
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
+
     {   
         await Navigation.PushAsync(new Cambio());
+    {
+        try
+        {
+           //mandar la moneda a la vista cambio
+           var monedaSeleccionada = PckOrigen.SelectedItem.ToString();
+              await Navigation.PushAsync(new Cambio(monedaSeleccionada));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+
+
+    private void ObtenerMonedaSeleccionada()
+    {
+        try
+        {
+            var monedaSeleccionada = PckOrigen.SelectedItem.ToString();
+            Console.WriteLine(monedaSeleccionada);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     private async void Button_Clicked_1(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Configuracion());
     }
+    
+    }
+
+
 }

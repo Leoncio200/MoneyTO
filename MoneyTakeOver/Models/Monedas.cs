@@ -15,6 +15,13 @@ namespace MoneyTakeOver.Models
         [MaxLength(50)]
         public string? Nombre { get; set; }
 
+
         public bool ActivoDivisa { get; set; }
+
+        public override string ToString()
+            {
+                return $"{Nombre} - {Id} - {ActivoDivisa}"; // Cambia esto para incluir las propiedades relevantes.
+            }
+
     }
 }
