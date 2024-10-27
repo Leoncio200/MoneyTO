@@ -15,6 +15,7 @@
             <!-- Entrada de Cantidad a convertir -->
             <VerticalStackLayout Margin="30,10" Spacing="10">
                 <Label Text="Ingresa la cantidad a convertir:" 
+                    x:Name="LblCantidad"
                        FontAttributes="Bold" 
                        FontSize="18"/>
                 <controls:Input Placeholder="Ejemplo 19.30"/>
