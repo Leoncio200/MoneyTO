@@ -16,6 +16,8 @@ namespace MoneyTakeOver.Views
             _monedasViewModel = new MonedasViewModel(_dbContext);
             BindingContext = _monedasViewModel;
             CreateDB();
+            //eliminar las monedas de la bd
+            _dbContext.Database.ExecuteSqlRaw("DELETE FROM Monedas");
             _ = CargarMonedas();
         }
 
