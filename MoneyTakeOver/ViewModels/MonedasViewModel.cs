@@ -347,13 +347,12 @@ namespace MoneyTakeOver.ViewModels
             }
         }
         //obtener el valor de tipo de cambio por ID
-        public async Task<decimal?> GetTipoCambioById(int monedaId)
+        public async Task<TiposCambio?> GetTipoCambioById(int monedaId)
         {
             try
             {
                 var tipoCambio = await _dbContext.TiposCambio
                     .Where(tc => tc.MonedaId == monedaId)
-                    .Select(tc => tc.TipoCambioVenta) // Puedes seleccionar el valor específico si es el único necesario
                     .FirstOrDefaultAsync();
 
                 return tipoCambio; // Devolver el tipo de cambio si existe
