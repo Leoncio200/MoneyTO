@@ -10,6 +10,7 @@ namespace MoneyTakeOver.DataAccess
         public DbSet<Operaciones> Operaciones { get; set; }
         public DbSet<TiposCambio> TiposCambio { get; set; }
         public DbSet<Monedas> Monedas { get; set; }
+        public DbSet<Casa> Casas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -60,6 +61,13 @@ namespace MoneyTakeOver.DataAccess
                 entity.HasKey(e => e.Id);
                 entity.Property(col => col.Id).IsRequired().ValueGeneratedOnAdd();
             });
+
+            modelBuilder.Entity<Casa>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(col => col.Id).IsRequired().ValueGeneratedOnAdd();
+            });
+
         }
     }
 }

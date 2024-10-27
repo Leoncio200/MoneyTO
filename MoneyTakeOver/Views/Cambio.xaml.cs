@@ -5,8 +5,6 @@ public partial class Cambio : ContentPage
 	public Cambio()
 	{
 		InitializeComponent();
-
-        
 	}
 
     private void OnDestinoChanged(object sender, EventArgs e)

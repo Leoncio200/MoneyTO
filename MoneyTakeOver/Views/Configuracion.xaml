@@ -14,32 +14,52 @@
                    FontSize="24"
                    HorizontalOptions="Center"/>
         </StackLayout>
+        <Button Text="Agregar" BackgroundColor="Green" TextColor="White" CornerRadius="20" Clicked="Button_Clicked"/>
 
-        <!-- Tarjeta de información -->
-        <Frame BorderColor="LightGray" CornerRadius="10" Padding="15">
-            <StackLayout Spacing="10">
-                
-                <!-- Logo pequeño -->
-                <Image Source="small_logo.png" WidthRequest="50" HeightRequest="50"/>
+        <CollectionView ItemsSource="{Binding Casas}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Tarjeta de información -->
+                    <Frame BorderColor="LightGray" CornerRadius="10" Padding="15">
+                        <StackLayout Spacing="10">
 
-                <!-- Nombre de empresa y ubicación -->
-                <StackLayout>
-                    <Label Text="Money Takeover" FontAttributes="Bold" FontSize="18"/>
-                    <Label Text="Torreón" FontAttributes="Bold" FontSize="16" TextColor="Gray"/>
-                </StackLayout>
+                            <!-- Logo pequeño -->
+                            <Image Source="small_logo.png" WidthRequest="50" HeightRequest="50"/>
 
-                <!-- Ubicación y horario -->
-                <StackLayout>
-                    <Label Text="Torreón, Coahuila" FontSize="14"/>
-                    <Label Text="Horario: 9:00 a 20:00" FontSize="14"/>
-                    <Label Text="Carr. Torreón - Matamoros S/N-Km 10, Ejido el Águila, 27400 Torreón, Coah." 
-                           FontSize="14"/>
-                </StackLayout>
+                            <!-- Nombre de empresa y ubicación -->
+                            <StackLayout>
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18"/>
+                                <Label Text="{Binding Ciudad}" FontAttributes="Bold" FontSize="16" TextColor="Gray"/>
+                            </StackLayout>
 
-                <!-- Botón de edición -->
-                <Button Text="Editar" BackgroundColor="Green" TextColor="White" CornerRadius="20" Clicked="Button_Clicked"/>
-            </StackLayout>
-        </Frame>
+                            <!-- Ubicación y horario -->
+                            <StackLayout>
+                                <Label FontSize="14">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="Estado: {0} a {1}">
+                                            <Binding Path="Ciudad"/>
+                                            <Binding Path="Estado"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label FontSize="14">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="Horario: {0} a {1}">
+                                            <Binding Path="HInicio"/>
+                                            <Binding Path="HCierre"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Text="{Binding Direccion}" FontSize="14"/>
+                            </StackLayout>
+
+                            <!-- Botón de edición -->
+                            <Button Text="Editar" BackgroundColor="Green" TextColor="White" CornerRadius="20" Clicked="Button_Clicked"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         
     </StackLayout>
 

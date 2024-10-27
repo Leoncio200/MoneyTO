@@ -1,0 +1,70 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyTakeOver.Views.AddConfiguracion"
+             Title="Agregar Configuracion"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="25" VerticalOptions="CenterAndExpand">
+
+            <!-- Logo y título -->
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="money_logo.jpg" WidthRequest="100" HeightRequest="100" Aspect="AspectFit"/>
+
+            </StackLayout>
+
+            <!-- Tarjeta de Nombre (editable) -->
+
+            <StackLayout>
+                <Label Text="Nombre" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+                <Entry x:Name="EntNomb" Placeholder="MoneyTakeOver" FontSize="12"/>
+            </StackLayout>
+
+            <!-- Tarjeta de Dirección (editable) -->
+
+            <StackLayout>
+                <Label Text="Dirección" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+                <Entry x:Name="EntDireccion" Placeholder="Calle de las noas" FontSize="12"/>
+            </StackLayout>
+
+
+            <!-- Tarjeta de Ciudad (editable) -->
+
+            <StackLayout>
+                <Label Text="Ciudad" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+                <Entry x:Name="EntCiudad" Placeholder="Matamoros" FontSize="12"/>
+            </StackLayout>
+
+
+            <!-- Tarjeta de Estado (editable) -->
+
+            <StackLayout>
+                <Label Text="Estado" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+                <Entry x:Name="EntEstado" Placeholder="Coahuila" FontSize="12"/>
+            </StackLayout>
+
+
+            <!-- Horario de Inicio (editable) -->
+
+            <StackLayout>
+                <Label Text="Horario (Hora Inicio)" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+                <Entry x:Name="EntHInicio" Placeholder="7:00" FontSize="12"/>
+            </StackLayout>
+
+
+            <!-- Horario de Cierre (editable) -->
+
+            <StackLayout>
+                <Label Text="Horario (Hora Cierre)" FontAttributes="Bold" FontSize="14" TextColor="Black" />
+                <Entry x:Name="EntHCierre" Placeholder="7:00" FontSize="12"/>
+            </StackLayout>
+
+
+            <!-- Botón Guardar -->
+            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand">
+                <Button Text="Cancelar" BackgroundColor="Firebrick" CornerRadius="20" HeightRequest="40" FontSize="18" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Guardar" BackgroundColor="Green" CornerRadius="20" HeightRequest="40" FontSize="18" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

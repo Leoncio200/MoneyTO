@@ -11,21 +11,28 @@ public partial class CambioBase : ContentPage
 	public CambioBase()
     {
 		InitializeComponent();
-        _dbContext.Database.EnsureCreatedAsync();
+        CreateDB();
         _monedasViewModel = new MonedasViewModel(_dbContext);
         BindingContext = _monedasViewModel;
         CargarMonedas();
 	}
 
+    private async void CreateDB()
+    {
+        var con = await _dbContext.Database.CanConnectAsync();
+        if(!con)
+        {
+            await _dbContext.Database.EnsureCreatedAsync();
+        }
+    }
+
     private void CargarMonedas()
     {
-        // Llama la tarea para agregar estas monedas
-        _dbContext.Database.EnsureCreatedAsync().Wait();
-        _ = _monedasViewModel.AgregarTodasLasMonedas();
+        _ = _monedasViewModel.GetDatosAsync();
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
-    {
+    {   
         await Navigation.PushAsync(new Cambio());
     }
 
