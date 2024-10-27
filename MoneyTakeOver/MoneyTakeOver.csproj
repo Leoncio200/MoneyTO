@@ -84,7 +84,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 					</MauiXaml>
 		
-									<MauiXaml Update="Views\Monedas.xaml">
+									<MauiXaml Update="Views\MonedasViews.xaml">
 											<Generator>MSBuild:Compile</Generator>
 									</MauiXaml>
 	 

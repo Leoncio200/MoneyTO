@@ -10,7 +10,7 @@
 
             <!-- Logo y título -->
             <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                <Image Source="money_logo.jpg" WidthRequest="100" HeightRequest="100" Aspect="AspectFit"/>
+                <Image Source="money_logo.png" WidthRequest="100" HeightRequest="100" Aspect="AspectFit"/>
               
             </StackLayout>
 

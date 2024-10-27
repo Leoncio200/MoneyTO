@@ -9,7 +9,7 @@
 
             <!-- Logo -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start" Margin="10">
-                <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
+                <Image Source="money_logo.png" Aspect="AspectFit" HeightRequest="100"/>
             </StackLayout>
 
             <!-- Selección de Moneda Base -->
@@ -35,10 +35,10 @@
 
 
             <!-- Selección de Moneda Objetivo -->
-            <VerticalStackLayout Margin="30,5" Spacing="10">
+            <VerticalStackLayout Margin="30,10" Spacing="10">
                 <Label Text="Selecciona la moneda a la que convertir:" 
                        FontAttributes="Bold" 
-                        HorizontalOptions="Center"
+                        
 
                        FontSize="18"/>
                           <Picker x:Name="PckOrigenConvertir" ItemsSource="{Binding Divisas}" ItemDisplayBinding="{Binding Nombre}" VerticalOptions="StartAndExpand" Title=""/>
@@ -63,7 +63,7 @@
                     <Label Text="Tu cambio es:" 
                            FontAttributes="Bold" 
                            FontSize="18"/>
-                    <Label Text="$ 19.00" 
+                    <Label Text="$ 0.00" 
                           x:Name="resultadoLabel"
                            FontSize="Medium"/>
                 </VerticalStackLayout>
