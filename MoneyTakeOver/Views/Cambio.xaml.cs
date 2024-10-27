@@ -27,10 +27,6 @@ public partial class Cambio : ContentPage
 
     }
 
-    
-    //obtener el id de la moneda base que es selectedCurrentId y buscar el valor de la moneda a converitir que es el picker new
-    //y multiplicar el valor de la moneda base por la cantidad que se quiere convertir
-    //y mostrar el resultado en el label
    private async Task ConvertirMoneda()
 {
     try
@@ -66,10 +62,7 @@ public partial class Cambio : ContentPage
     }
 }
 
-    
-
-    //funcion para multiplicar lo que vale la moneda base por la cantidad que se quiere convertir
-       
+   
 
     private void OnAceptarClicked(object sender, EventArgs e)
     {

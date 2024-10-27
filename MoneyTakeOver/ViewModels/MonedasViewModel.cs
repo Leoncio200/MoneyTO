@@ -156,6 +156,31 @@ namespace MoneyTakeOver.ViewModels
             }
         }
     
+
+          public async Task GetDatosAsyncTipo()
+            {
+                try
+                {
+                    // Carga TiposCambioList y asegura que incluya la información de Moneda
+                    var tiposCambio = await _dbContext.TiposCambio
+                        .Include(tc => tc.Moneda) // Incluye la información de la moneda asociada
+                        .ToListAsync();
+
+                    TiposCambioList.Clear();
+                    foreach (var tipoCambio in tiposCambio)
+                    {
+                        if (tipoCambio.Moneda != null) // Asegura que la moneda está enlazada
+                        {
+                            TiposCambioList.Add(tipoCambio);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al cargar tipos de cambio: {ex.Message}");
+                }
+            }
+
         public async Task GetDivisas()
         {
             if (_isLoading)
@@ -296,13 +321,12 @@ namespace MoneyTakeOver.ViewModels
         }
        
     
-        public async Task AnadirValorTipoCambio(int monedaId, decimal nuevoTipoCompra, decimal nuevoTipoVenta)
+      public async Task ActualizarValorTipoCambio(int monedaId, decimal nuevoTipoCompra, decimal nuevoTipoVenta)
         {
             try
             {
                 var tipoCambio = await _dbContext.TiposCambio
-                    .Where(tc => tc.MonedaId == monedaId)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefaultAsync(tc => tc.MonedaId == monedaId);
 
                 if (tipoCambio != null)
                 {
@@ -310,38 +334,36 @@ namespace MoneyTakeOver.ViewModels
                     tipoCambio.TipoCambioVenta = nuevoTipoVenta;
 
                     await _dbContext.SaveChangesAsync();
-                    await DialogsHelper.ShowSuccessMessage("Actualización Exitosa", "Los tipos de cambio han sido actualizados.");
+                    Console.WriteLine("Actualización Exitosa: Los tipos de cambio han sido actualizados.");
                 }
                 else
                 {
-                    await DialogsHelper.ShowWarningMessage("Error", "No se encontró el tipo de cambio para esta moneda.");
+                    Console.WriteLine("Error: No se encontró el tipo de cambio para esta moneda.");
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al actualizar el tipo de cambio: {ex.Message}");
-                await DialogsHelper.ShowErrorMessage("Error", "Hubo un problema al actualizar el tipo de cambio.");
             }
         }
-
         //obtener el valor de tipo de cambio por ID
-      public async Task<decimal?> GetTipoCambioById(int monedaId)
-{
-    try
-    {
-        var tipoCambio = await _dbContext.TiposCambio
-            .Where(tc => tc.MonedaId == monedaId)
-            .Select(tc => tc.TipoCambioVenta) // Puedes seleccionar el valor específico si es el único necesario
-            .FirstOrDefaultAsync();
+        public async Task<decimal?> GetTipoCambioById(int monedaId)
+        {
+            try
+            {
+                var tipoCambio = await _dbContext.TiposCambio
+                    .Where(tc => tc.MonedaId == monedaId)
+                    .Select(tc => tc.TipoCambioVenta) // Puedes seleccionar el valor específico si es el único necesario
+                    .FirstOrDefaultAsync();
 
-        return tipoCambio; // Devolver el tipo de cambio si existe
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error al obtener el tipo de cambio: {ex.Message}");
-        return null; // Devuelve null si ocurre un error
-    }
-}
+                return tipoCambio; // Devolver el tipo de cambio si existe
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener el tipo de cambio: {ex.Message}");
+                return null; // Devuelve null si ocurre un error
+            }
+        }
 
         public async Task ActualizarTipoCambio(int monedaId, decimal nuevoTipoCompra, decimal nuevoTipoVenta)
         {
@@ -371,9 +393,7 @@ namespace MoneyTakeOver.ViewModels
             }
         }
 
-
         //METODOS HARD CODEADOS
-
         public async Task AgregarTodasLasMonedas()
         {
             try

@@ -5,14 +5,14 @@ namespace MoneyTakeOver.Views;
 
 public partial class AddConfiguracion : ContentPage
 {
-	private DivisasDbContext _dbContext = new DivisasDbContext();
-	private CasaViewModel _casaViewModel;
-	public AddConfiguracion()
-	{
-		InitializeComponent();
-		_casaViewModel = new CasaViewModel(_dbContext);
-		BindingContext = _casaViewModel;
-	}
+    private CasaViewModel _casaViewModel;
+
+    public AddConfiguracion()
+    {
+        InitializeComponent();
+        _casaViewModel = new CasaViewModel(new DivisasDbContext());
+        BindingContext = _casaViewModel;
+    }
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
@@ -21,13 +21,18 @@ public partial class AddConfiguracion : ContentPage
         _casaViewModel.NuevaCasaDireccion = EntDireccion.Text;
         _casaViewModel.NuevaCasaCiudad = EntCiudad.Text;
         _casaViewModel.NuevaCasaEstado = EntEstado.Text;
-        _casaViewModel.NuevaCasaHInicio = EntHInicio.Text;
-        _casaViewModel.NuevaCasaHCierre = EntHCierre.Text;
+
+        // Obtiene los valores seleccionados en los TimePickers y los convierte a cadena
+        _casaViewModel.NuevaCasaHInicio = TimePickerHInicio.Time.ToString(@"hh\:mm");
+        _casaViewModel.NuevaCasaHCierre = TimePickerHCierre.Time.ToString(@"hh\:mm");
 
         // Agrega la nueva casa a la base de datos
         await _casaViewModel.AddCasa();
 
-        // Regresa a la p�gina anterior
+        // Mensaje de confirmación
+        await DisplayAlert("Éxito", "Configuración guardada correctamente", "OK");
+
+        // Regresa a la página anterior
         await Navigation.PopAsync();
     }
 }

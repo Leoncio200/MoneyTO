@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Input;
 
 namespace MoneyTakeOver.ViewModels
 {
@@ -28,6 +29,9 @@ namespace MoneyTakeOver.ViewModels
         private bool _isCasasEmpty;
         private bool _isInitialLoad = true;
         private bool _isLoading = false;
+
+        public ICommand EliminarCasaCommand { get; }
+
 
         public ObservableCollection<Casa> Casas
         {
@@ -179,6 +183,7 @@ namespace MoneyTakeOver.ViewModels
                 {
                     _dbContext.Casas.Remove(casa);
                     await _dbContext.SaveChangesAsync();
+                    Casas.Remove(casa);
 
                     await GetCasas();
                 }
@@ -202,6 +207,8 @@ namespace MoneyTakeOver.ViewModels
         {
             _dbContext = dbContext;
             Casas = new ObservableCollection<Casa>();
+                EliminarCasaCommand = new Command<Casa>(async (casa) => await DeleteCasa(casa));
+
         }
 
         public async Task GetDatosAsync()
