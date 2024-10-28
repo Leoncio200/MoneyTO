@@ -2,56 +2,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyTakeOver.Views.MonedasView"
              NavigationPage.HasNavigationBar="False">
-    <Grid Padding="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollView>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <Label Text="Lista de Monedas" 
-               FontSize="24" 
-               HorizontalOptions="Center"
-               FontAttributes="Bold" 
-               Grid.Row="0"/>
+            <Label Text="Lista de Monedas" 
+                   FontSize="24" 
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold" 
+                   Grid.Row="0"/>
 
-        <ListView x:Name="MonedasListView" 
-                  Margin="0,50,0,0"
-                  HasUnevenRows="True"
-                  ItemsSource="{Binding TiposCambios}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10" ColumnSpacing="10" RowSpacing="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/> <!-- Toma todo el espacio disponible -->
-                                <ColumnDefinition Width="Auto"/> <!-- Ancho automático para el precio de compra -->
-                                <ColumnDefinition Width="Auto"/> <!-- Ancho automático para el precio de venta -->
-                                <ColumnDefinition Width="Auto"/> <!-- Ancho automático para el botón -->
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+            <ListView x:Name="MonedasListView" 
+                      Margin="0,20,0,0"
+                      HasUnevenRows="True"
+                      ItemsSource="{Binding TiposCambios}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Moneda.Nombre}" 
-                                   VerticalOptions="Center" 
-                                   TextColor="Black"
-                                   HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding TipoCambioCompra, StringFormat='Compra: {0:C}'}" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Label Text="{Binding TipoCambioVenta, StringFormat='Venta: {0:C}'}" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Button Text="Editar" 
-                                    CommandParameter="{Binding .}" 
-                                    Clicked="OnEditButtonClicked" 
-                                    VerticalOptions="Center" 
-                                    HorizontalOptions="End"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+                                <Label Text="{Binding Moneda.Nombre}" 
+                                       Grid.Column="0"
+                                       VerticalOptions="Center" 
+                                       FontAttributes="Bold" />
+
+                                <Label Text="{Binding TipoCambioCompra, StringFormat='Compra: {0:C}'}" 
+                                       Grid.Column="1" />
+
+                                <Label Text="{Binding TipoCambioVenta, StringFormat='Venta: {0:C}'}" 
+                                       Grid.Column="2" />
+
+                                <Button Text="Editar" 
+                                        Grid.Column="3"
+                                        CommandParameter="{Binding .}" 
+                                        Clicked="OnEditButtonClicked"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Añadir Tipo de Cambio" 
+                    Grid.Row="2"
+                    BackgroundColor="Green" 
+                    TextColor="White" 
+                    Clicked="OnAddTipoCambioClicked" 
+                    Margin="0,10"/>
+        </Grid>
+    </ScrollView>
 </ContentPage>

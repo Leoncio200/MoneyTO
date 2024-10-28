@@ -17,7 +17,7 @@
                     ItemDisplayBinding="{Binding Nombre}" 
                     VerticalOptions="StartAndExpand" 
                     Title="Selecciona la Moneda Base"/>
-            
+
         </StackLayout>
 
         <StackLayout VerticalOptions="FillAndExpand" Margin="10">

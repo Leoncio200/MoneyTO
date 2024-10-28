@@ -22,7 +22,7 @@ namespace MoneyTakeOver.Views
             
             
             _ = CargarMonedas();
-            _ = CargarTiposCambio();
+            //_ = CargarTiposCambio();
         }
 
         private async void CreateDB()
@@ -45,9 +45,6 @@ namespace MoneyTakeOver.Views
             await _monedasViewModel.AgregarTiposCambio();
         }
 
-
-
-
         private async void Button_Clicked(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado una moneda
@@ -65,6 +62,7 @@ namespace MoneyTakeOver.Views
             // Pasar los valores a la siguiente página
             await Navigation.PushAsync(new Cambio(selectedCurrency, selectedCurrencyId));
         }
+
 
 
         private async void Button_Clicked_1(object sender, EventArgs e)

@@ -1,5 +1,7 @@
 using MoneyTakeOver.DataAccess;
+using MoneyTakeOver.Models;
 using MoneyTakeOver.ViewModels;
+using System;
 
 namespace MoneyTakeOver.Views;
 
@@ -7,81 +9,78 @@ public partial class Cambio : ContentPage
 {
     private readonly MonedasViewModel _monedasViewModel;
 
-	public Cambio(string selectedCurrency, string selectedCurrencyId)
-	{
-		InitializeComponent();
+    public Cambio(string selectedCurrency, string selectedCurrencyId)
+    {
+        InitializeComponent();
         _monedasViewModel = new MonedasViewModel(new DivisasDbContext());
-            BindingContext = _monedasViewModel;
-            _ = CargarMonedas();
+        BindingContext = _monedasViewModel;
 
-            // Muestra la moneda base seleccionada
-            baseCurrencyLabel.Text = selectedCurrency;
-            baseCurrencyIdLabel.Text = selectedCurrencyId;
-	}
+        // Mostrar la moneda base seleccionada
+        baseCurrencyLabel.Text = selectedCurrency;
+        baseCurrencyIdLabel.Text = selectedCurrencyId;
 
-     private async Task CargarMonedas()
+        _ = CargarMonedas();
+    }
+
+    private async Task CargarMonedas()
     {
         await _monedasViewModel.GetDatosAsync();
-
     }
 
-   private async Task ConvertirMoneda()
-{
-    try
+    private async Task ConvertirMoneda()
     {
-        var monedaBase = baseCurrencyIdLabel.Text;
-        if (string.IsNullOrEmpty(monedaBase))
+        try
         {
-            await DisplayAlert("Error", "No se seleccionó una moneda base.", "OK");
-            return;
-        }
+            var monedaBase = baseCurrencyLabel.Text;
+            var monedaSeleccionada = PckOrigenConvertir.SelectedItem as Models.Monedas;
 
-        var monedaConvertir = PckOrigenConvertir.SelectedItem?.ToString();
-        if (string.IsNullOrEmpty(monedaConvertir))
+            if (monedaSeleccionada == null)
+            {
+                await DisplayAlert("Error", "No se seleccionó una moneda a convertir.", "OK");
+                return;
+            }
+
+            // Buscar y agregar el tipo de cambio desde la API si es necesario
+            await _monedasViewModel.BuscarYAgregarTipoCambio(monedaBase, monedaSeleccionada.Nombre);
+
+            // Obtener el tipo de cambio de la moneda seleccionada
+            var tipoCambioVenta = await _monedasViewModel.GetTipoCambioById(monedaSeleccionada.Id);
+            if (tipoCambioVenta == null)
+            {
+                await DisplayAlert("Error", "No se encontró el tipo de cambio.", "OK");
+                return;
+            }
+
+            // Verificar que la cantidad ingresada sea válida
+            if (!decimal.TryParse(cantidadInput.Text, out decimal cantidad) || cantidad <= 0)
+            {
+                await DisplayAlert("Error", "Ingrese una cantidad válida.", "OK");
+                return;
+            }
+
+            // Realizar la conversión y mostrar el resultado
+            var resultado = tipoCambioVenta.Value * cantidad;
+            resultadoLabel.Text = $"{resultado:C}";
+        }
+        catch (Exception ex)
         {
-            await DisplayAlert("Error", "No se seleccionó una moneda a convertir.", "OK");
-            return;
+            Console.WriteLine($"Error en la conversión: {ex.Message}");
+            await DisplayAlert("Error", "Error al realizar la conversión.", "OK");
         }
-
-        monedaConvertir = monedaConvertir.Split('-')[1].Trim();
-        int monedaConvertirId = Convert.ToInt32(monedaConvertir);
-
-        // Buscar el tipo de cambio de la moneda seleccionada
-       var tipoCambio = await _monedasViewModel.GetTipoCambioById(monedaConvertirId);
-        // Aquí agregas la lógica para multiplicar el tipo de cambio y mostrar el resultado
-        var cantidad = Convert.ToDecimal(cantidadInput.Text);
-        var resultado = tipoCambio * cantidad;
-        resultadoLabel.Text = $"{resultado}";
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error en ConvertirMoneda: {ex.Message}");
-        await DisplayAlert("Error", "Error al convertir la moneda.", "OK");
-    }
-}
 
-   
+
 
     private void OnAceptarClicked(object sender, EventArgs e)
     {
-        // Lógica a ejecutar cuando el usuario presiona "Aceptar"
         DisplayAlert("Confirmación", "Conversión aceptada.", "OK");
     }
 
     private async void OnBuscarYAgregarTipoCambioClicked(object sender, EventArgs e)
     {
-        string monedaBase = "USD"; // Puedes obtener esto del usuario o configuración
-        string monedaDestino = PckOrigenConvertir.SelectedItem.ToString(); // Selección del Picker
-
-        await _monedasViewModel.BuscarYAgregarTipoCambio(monedaBase, monedaDestino);
-    }
-
-
-    private async void Button_Clicked(object sender, EventArgs e)
-    {
         try
         {
-            var monedaBase = baseCurrencyLabel.Text;
+            string monedaBase = baseCurrencyLabel.Text;
             var monedaDestino = PckOrigenConvertir.SelectedItem as Models.Monedas;
 
             if (monedaDestino == null)
@@ -90,26 +89,18 @@ public partial class Cambio : ContentPage
                 return;
             }
 
-            // Buscar y agregar el tipo de cambio
             await _monedasViewModel.BuscarYAgregarTipoCambio(monedaBase, monedaDestino.Nombre);
-
-            // Ahora, realiza la conversión
-            var tipoCambio = await _monedasViewModel.GetTipoCambioById(monedaDestino.Id);
-            if (tipoCambio == null)
-            {
-                await DisplayAlert("Error", "No se encontró el tipo de cambio.", "OK");
-                return;
-            }
-
-            var cantidad = Convert.ToDecimal(cantidadInput.Text);
-            var resultado = tipoCambio.Value * cantidad;
-            resultadoLabel.Text = $"{resultado:C}";
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error en la conversión: {ex.Message}");
-            await DisplayAlert("Error", "Error al realizar la conversión.", "OK");
+            await DisplayAlert("Error", $"Hubo un problema: {ex.Message}", "OK");
         }
+    }
+
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await ConvertirMoneda();
     }
 
 }

@@ -91,46 +91,50 @@ namespace MoneyTakeOver.ViewModels
         {
             try
             {
-                await Task.Delay(100);
-
-                if (string.IsNullOrWhiteSpace(NuevoTipoCambioMoneda) || NuevoTipoCambioPrecio < 1 || NuevoTipoCambioVenta < 1)
+                if (string.IsNullOrWhiteSpace(NuevoTipoCambioMoneda) || NuevoTipoCambioPrecio <= 0 || NuevoTipoCambioVenta <= 0)
+                {
+                    Console.WriteLine("Datos inválidos. Asegúrese de ingresar todos los campos correctamente.");
                     return;
-
-                var moneda = await _dbContext.Monedas.FirstOrDefaultAsync(m => m.Nombre == NuevoTipoCambioMoneda);
-                if (moneda != null) {
-                    TiposCambio nuevoTipoCambio = new TiposCambio
-                    {
-                        MonedaId = moneda.Id,
-                        Moneda = moneda,
-                        TipoCambioCompra = NuevoTipoCambioPrecio,
-                        TipoCambioVenta = NuevoTipoCambioVenta
-                    };
-                    _dbContext.TiposCambio.Add(nuevoTipoCambio);
-                    await _dbContext.SaveChangesAsync();
                 }
 
-                
+                var moneda = await _dbContext.Monedas.FirstOrDefaultAsync(m => m.Nombre == NuevoTipoCambioMoneda);
+                if (moneda == null)
+                {
+                    Console.WriteLine("No se encontró la moneda especificada.");
+                    return;
+                }
 
-                NuevoTipoCambioMoneda = "";
-                NuevoTipoCambioPrecio = 0.0m;
-                NuevoTipoCambioVenta = 0.0m;
-                
+                var nuevoTipoCambio = new TiposCambio
+                {
+                    MonedaId = moneda.Id,
+                    TipoCambioCompra = NuevoTipoCambioPrecio,
+                    TipoCambioVenta = NuevoTipoCambioVenta
+                };
+
+                _dbContext.TiposCambio.Add(nuevoTipoCambio);
+                var cambiosGuardados = await _dbContext.SaveChangesAsync();
+
+                if (cambiosGuardados > 0)
+                {
+                    Console.WriteLine("Tipo de cambio guardado exitosamente.");
+                }
+                else
+                {
+                    Console.WriteLine("No se guardaron cambios en la base de datos.");
+                }
+
+                NuevoTipoCambioMoneda = string.Empty;
+                NuevoTipoCambioPrecio = 0;
+                NuevoTipoCambioVenta = 0;
+
                 await GetTiposCambios();
             }
             catch (Exception ex)
             {
-                var errorMessage = $"Error al procesar la solicitud Message: {ex.Message}";
-                var errorStackTrace = $"Error al procesar la solicitud StackTrace: {ex.StackTrace}";
-                var errorMessageDialog = $"Fallo al procesar la solicitud: {ex.Message}";
-                Console.WriteLine("=== ERROR DETECTADO ===");
-                Console.WriteLine(errorMessage);
-                Console.WriteLine(errorStackTrace);
-                Console.WriteLine("=======================");
-            }
-            finally
-            {
+                Console.WriteLine($"Error al agregar el tipo de cambio: {ex.Message}");
             }
         }
+
 
         public async Task UpdateTipoCambio(TiposCambio tipoCambio)
         {
@@ -153,6 +157,19 @@ namespace MoneyTakeOver.ViewModels
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al actualizar: {ex.Message}");
+            }
+        }
+
+        public async Task<List<Monedas>> ObtenerMonedas()
+        {
+            try
+            {
+                return await _dbContext.Monedas.ToListAsync(); // Carga todas las monedas.
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener monedas: {ex.Message}");
+                return new List<Monedas>(); // Si ocurre un error, retorna una lista vacía.
             }
         }
 

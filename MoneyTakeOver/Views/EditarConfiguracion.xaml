@@ -5,61 +5,16 @@
              Title="Editar Configuracion"
               NavigationPage.HasNavigationBar="False">
 
-    <ScrollView>
-        <StackLayout Padding="20" Spacing="25" VerticalOptions="CenterAndExpand">
+    <StackLayout Padding="20" Spacing="15">
+        <Label Text="Editar Configuración" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
-            <!-- Logo y título -->
-            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                <Image Source="money_logo.png" WidthRequest="100" HeightRequest="100" Aspect="AspectFit"/>
-              
-            </StackLayout>
+        <Entry x:Name="NombreEntry" Placeholder="Nombre de la Casa" />
+        <Entry x:Name="DireccionEntry" Placeholder="Dirección" />
+        <Entry x:Name="CiudadEntry" Placeholder="Ciudad" />
+        <Entry x:Name="EstadoEntry" Placeholder="Estado" />
+        <Entry x:Name="HorarioInicioEntry" Placeholder="Horario de Inicio" />
+        <Entry x:Name="HorarioCierreEntry" Placeholder="Horario de Cierre" />
 
-            <!-- Tarjeta de Dirección (editable) -->
-           
-                <StackLayout>
-                    <Label Text="Dirección" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
-                    <Entry Placeholder="Calle de las noas" Text="Calle de las noas" FontSize="12"/>
-                </StackLayout>
-            
-
-            <!-- Tarjeta de Ciudad (editable) -->
-           
-                <StackLayout>
-                    <Label Text="Ciudad" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
-                    <Entry Placeholder="Matamoros" Text="Matamoros" FontSize="12"/>
-                </StackLayout>
-            
-
-            <!-- Tarjeta de Estado (editable) -->
-           
-                <StackLayout>
-                    <Label Text="Estado" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
-                    <Entry Placeholder="Coahuila" Text="Coahuila" FontSize="12"/>
-                </StackLayout>
-            
-
-            <!-- Horario de Inicio (editable) -->
-           
-                <StackLayout>
-                    <Label Text="Horario (Hora Inicio)" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
-                    <Entry Placeholder="7:00" Text="7:00" FontSize="12"/>
-                </StackLayout>
-            
-
-            <!-- Horario de Cierre (editable) -->
-           
-                <StackLayout>
-                    <Label Text="Horario (Hora Cierre)" FontAttributes="Bold" FontSize="14" TextColor="Black" />
-                    <Entry Placeholder="7:00" Text="7:00" FontSize="12"/>
-                </StackLayout>
-            
-
-            <!-- Botón Guardar -->
-            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand">
-                <Button Text="Cancelar" BackgroundColor="Firebrick" CornerRadius="20" HeightRequest="40" FontSize="18" HorizontalOptions="FillAndExpand"/>
-                <Button Text="Guardar" BackgroundColor="Green" CornerRadius="20" HeightRequest="40" FontSize="18" HorizontalOptions="FillAndExpand"/>
-            </StackLayout>
-
-        </StackLayout>
-    </ScrollView>
+        <Button Text="Guardar" BackgroundColor="Green" TextColor="White" Clicked="OnGuardarClicked" />
+    </StackLayout>
 </ContentPage>

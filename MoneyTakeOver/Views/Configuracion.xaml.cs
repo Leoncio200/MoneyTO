@@ -1,4 +1,5 @@
 using MoneyTakeOver.DataAccess;
+using MoneyTakeOver.Models;
 using MoneyTakeOver.ViewModels;
 
 namespace MoneyTakeOver.Views;
@@ -45,21 +46,19 @@ public partial class Configuracion : ContentPage
 		// var casa = (Casa)button.CommandParameter;
 	}
 	private async void OnEditButtonClicked(object sender, EventArgs e)
-{
-    // var button = (Button)sender;
-    // var casa = (Casa)button.CommandParameter;
+	{
+        var button = (Button)sender;
+        var casa = (Casa)button.CommandParameter;
 
-    // if (casa != null)
-    // {
-    //     // Navegar a la página de edición pasando el objeto Casa
-    //     await Navigation.PushAsync(new EditarConfiguracion(casa));
-    // }
-    // else
-    // {
-    //     await DisplayAlert("Error", "No se pudo obtener la información de la empresa para editar", "OK");
-    // }
-}
-
+        if (casa != null)
+        {
+            await Navigation.PushAsync(new EditarConfiguracion(casa, _casasViewModel));
+        }
+        else
+        {
+            await DisplayAlert("Error", "No se pudo obtener la información de la empresa para editar", "OK");
+        }
+    }
 
 
 }

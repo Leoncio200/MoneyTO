@@ -173,6 +173,21 @@ namespace MoneyTakeOver.ViewModels
             }
         }
 
+        public async Task UpdateCasa(Casa casa)
+        {
+            try
+            {
+                _dbContext.Casas.Update(casa);
+                await _dbContext.SaveChangesAsync();
+                await GetCasas(); // Recargar la lista de casas actualizadas
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar la casa: {ex.Message}");
+            }
+        }
+
+
         public async Task DeleteCasa(Casa casa)
         {
             try
