@@ -58,17 +58,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Remove="Resources\Raw\Monedas.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Fonts\Font-Awesome-6-Brands-Regular-400.otf" />
 	  <None Remove="Resources\Fonts\Font-Awesome-6-Free-Regular-400.otf" />
 	  <None Remove="Resources\Fonts\Font-Awesome-6-Free-Solid-900.otf" />
 	  <None Remove="Resources\Images\money_logo.png" />
-	  <None Remove="Utilidades\Symbols.txt" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Utilidades\Symbols.txt">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,6 +79,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resources\Raw\Monedas.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\AddConfiguracion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -91,6 +92,9 @@
 	  <MauiXaml Update="Views\Cambio.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 					</MauiXaml>
+	  <MauiXaml Update="Views\ModificarMoneda.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 		
 									<MauiXaml Update="Views\Monedas.xaml">
 											<Generator>MSBuild:Compile</Generator>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,28 +10,64 @@ namespace MoneyTakeOver.Models
 {
     public class RestService
     {
-        private readonly HttpClient _httpClient;
-        private readonly string _token = "16ea9582518d82e32fcba625e8771869d09b836d5c274bf8338f73c7546f59ad";
+        private readonly HttpClient _client;
+
         public RestService()
         {
-            _httpClient = new HttpClient();
+            _client = new HttpClient();
         }
 
-        public async Task<string> GetDataAsync()
+        public async Task<decimal?> ObtenerTipoCambio(string monedaBase, string monedaDestino)
         {
-            var response = await _httpClient.GetAsync($"https://open.er-api.com/v6/latest/MXN");
+            try
+            {
+                // API de ejemplo que devuelve tipos de cambio
+                string url = $"https://open.er-api.com/v6/latest/{monedaBase.Substring(monedaBase.Length -4, 3)}";
 
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsStringAsync();
+                var response = await _client.GetStringAsync(url);
+                var json = JObject.Parse(response);
+
+                // Obtener el tipo de cambio para la moneda destino
+                var tipoCambio = json["rates"]?[monedaDestino.Substring(monedaDestino.Length - 4, 3)]?.Value<decimal>();
+                return tipoCambio;
             }
-            else
+            catch (Exception ex)
             {
-                throw new HttpRequestException($"Error en la solicitud: {response.StatusCode}");
+                Console.WriteLine($"Error al obtener el tipo de cambio: {ex.Message}");
+                return null;
             }
         }
 
-        
+        public async Task<List<Monedas>> ObtenerMonedasFormato()
+        {
+            try
+            {
+                string url = "https://openexchangerates.org/api/currencies.json"; // URL del endpoint de monedas
+                var response = await _client.GetStringAsync(url);
+                var json = JObject.Parse(response);
+
+                var monedas = new List<Monedas>();
+                int id = 1;
+
+                foreach (var item in json)
+                {
+                    monedas.Add(new Monedas
+                    {
+                        Id = id++,
+                        Nombre = $"{item.Value} ({item.Key})",
+                        ActivoDivisa = true
+                    });
+                }
+
+                return monedas;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener las monedas: {ex.Message}");
+                return new List<Monedas>(); // Devuelve lista vacía en caso de error
+            }
+        }
+
     }
 }
 

@@ -12,24 +12,22 @@
         <ListView x:Name="MonedasListView" 
                   Margin="0,50,0,0"
                   HasUnevenRows="True"
-                  ItemsSource="{Binding Divisas}">
+                  ItemsSource="{Binding TiposCambios}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10" 
-                              ColumnSpacing="10" 
-                              RowSpacing="10">
+                        <Grid Padding="10" ColumnSpacing="10" RowSpacing="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/> <!-- Toma todo el espacio disponible -->
-                                <ColumnDefinition Width="*"/> <!-- Ancho automático para el precio de compra -->
-                                <ColumnDefinition Width="*"/> <!-- Ancho automático para el botón -->
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <Label Text="{Binding Nombre}" 
+                            <Label Text="{Binding NombreMoneda}" 
                                    TextColor="Black"
                                    Grid.Column="0"
                                    Grid.RowSpan="2"
@@ -43,10 +41,10 @@
                             <Label Text="{Binding TipoCambioVenta, StringFormat='Venta: {0:C}'}" 
                                    Grid.Column="1"
                                    Grid.Row="1"
-                                   HorizontalTextAlignment="Center"/>      
+                                   HorizontalTextAlignment="Center"/>
 
                             <Button Text="Editar" 
-                                    CommandParameter="{Binding .}" 
+                                    ClassId="{Binding NombreMoneda}" 
                                     Clicked="OnEditButtonClicked"
                                     WidthRequest="90"
                                     HeightRequest="50"

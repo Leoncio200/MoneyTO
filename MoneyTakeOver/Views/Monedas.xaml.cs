@@ -8,24 +8,30 @@ namespace MoneyTakeOver.Views
 {
     public partial class Monedas : ContentPage
     {
-        private readonly MonedasViewModel _monedasViewModel;
+        private readonly TiposCambioViewModel _tiposCambioViewModel;
 
         public Monedas()
         {
             InitializeComponent();
-            _monedasViewModel = new MonedasViewModel(new DivisasDbContext());
-            BindingContext = _monedasViewModel;
+            _tiposCambioViewModel = new TiposCambioViewModel(new DivisasDbContext());
+            BindingContext = _tiposCambioViewModel;
 
             // Carga de monedas
             _ = CargarMonedas();
 
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await _tiposCambioViewModel.GetDatosAsync();  // Recargar los datos al volver a la página.
+        }
+
         private async Task CargarMonedas()
         {
             try
             {
-                await _monedasViewModel.GetDatosAsync();
+                await _tiposCambioViewModel.GetDatosAsync();
                 //Console.WriteLine(_monedasViewModel.Divisas);
             }
             catch (Exception ex)
@@ -41,14 +47,11 @@ namespace MoneyTakeOver.Views
             Console.WriteLine(moneda.Id);
         }
 
-        private void OnEditButtonClicked(object sender, EventArgs e)
+        private async void OnEditButtonClicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
-            var moneda = (TiposCambio)button.CommandParameter;
-            Console.WriteLine(moneda.Id);
-
-            // Navegar a la página de edición
-           // await Navigation.PushAsync(new EditarMoneda(moneda));
+            var tipoCambio = (TiposCambio)button.BindingContext;
+            await Navigation.PushAsync(new ModificarMoneda(tipoCambio));
         }
     }
 }

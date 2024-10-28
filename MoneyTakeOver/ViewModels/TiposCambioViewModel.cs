@@ -57,20 +57,16 @@ namespace MoneyTakeOver.ViewModels
 
         public async Task GetTiposCambios()
         {
-            if (_isLoading)
-                return;
+            if (_isLoading) return;
 
             try
             {
-                if (_isInitialLoad)
-                {
-                    _isInitialLoad = false;
-                }
-
                 _isLoading = true;
                 await Task.Delay(100);
 
-                var query = _dbContext.TiposCambio.AsQueryable();
+                var query = _dbContext.TiposCambio
+                    .Include(tc => tc.Moneda)  // Incluir la moneda relacionada
+                    .AsQueryable();
 
                 var allTiposCambios = await query.ToListAsync();
                 TiposCambios.Clear();
@@ -83,24 +79,15 @@ namespace MoneyTakeOver.ViewModels
             }
             catch (Exception ex)
             {
-                var errorMessage = $"Error al procesar la solicitud Message: {ex.Message}";
-                var errorStackTrace = $"Error al procesar la solicitud StackTrace: {ex.StackTrace}";
-                var errorMessageDialog = $"Fallo al procesar la solicitud: {ex.Message}";
-                Console.WriteLine("=== ERROR DETECTADO ===");
-                Console.WriteLine(errorMessage);
-                Console.WriteLine(errorStackTrace);
-                Console.WriteLine("=======================");
+                Console.WriteLine($"Error: {ex.Message}");
             }
             finally
             {
                 _isLoading = false;
-                if (!_isInitialLoad)
-                {
-                }
             }
         }
 
-        public async Task AddCasa()
+        public async Task AddTipoCambio()
         {
             try
             {
@@ -142,6 +129,30 @@ namespace MoneyTakeOver.ViewModels
             }
             finally
             {
+            }
+        }
+
+        public async Task UpdateTipoCambio(TiposCambio tipoCambio)
+        {
+            try
+            {
+                if (tipoCambio == null || tipoCambio.TipoCambioCompra < 0 || tipoCambio.TipoCambioVenta < 0)
+                    return;
+
+                var tipoCambioExistente = await _dbContext.TiposCambio
+                    .FirstOrDefaultAsync(tc => tc.Id == tipoCambio.Id);
+
+                if (tipoCambioExistente != null)
+                {
+                    tipoCambioExistente.TipoCambioCompra = tipoCambio.TipoCambioCompra;
+                    tipoCambioExistente.TipoCambioVenta = tipoCambio.TipoCambioVenta;
+
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar: {ex.Message}");
             }
         }
 

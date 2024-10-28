@@ -12,7 +12,12 @@
         <StackLayout VerticalOptions="FillAndExpand" Margin="20,30,20,0">
             <Label Text="Bienvenido!" HeightRequest="100" FontSize="24" HorizontalTextAlignment="Center" TextColor="Black"/>
             <Label Text="Elige la moneda de base para empezar la conversión:" HeightRequest="100" FontSize="18" HorizontalTextAlignment="Center" TextColor="Black"/>
-            <Picker x:Name="PckOrigen" ItemsSource="{Binding Divisas}" ItemDisplayBinding="{Binding Nombre}" VerticalOptions="StartAndExpand" Title="Origen"/>
+            <Picker x:Name="PckOrigen" 
+                    ItemsSource="{Binding Divisas}" 
+                    ItemDisplayBinding="{Binding Nombre}" 
+                    VerticalOptions="StartAndExpand" 
+                    Title="Selecciona la Moneda Base"/>
+            
         </StackLayout>
 
         <StackLayout VerticalOptions="FillAndExpand" Margin="10">

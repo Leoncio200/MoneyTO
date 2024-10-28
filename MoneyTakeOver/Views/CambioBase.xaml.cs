@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MoneyTakeOver.DataAccess;
+using MoneyTakeOver.Models;
 using MoneyTakeOver.ViewModels;
 
 namespace MoneyTakeOver.Views
@@ -43,20 +44,27 @@ namespace MoneyTakeOver.Views
             await _monedasViewModel.AgregarTiposCambio();
         }
 
-        
+
 
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            // Verificar si se ha seleccionado una moneda
+            var monedaSeleccionada = PckOrigen.SelectedItem as Models.Monedas;
+            if (monedaSeleccionada == null)
+            {
+                await DisplayAlert("Error", "Por favor selecciona una moneda.", "OK");
+                return;
+            }
 
-            var picker = PckOrigen.SelectedItem.ToString();
-            Console.WriteLine(picker);
-            //pasa la moneda seleccionada a la siguiente pagina
-            var selectedCurrency = picker.Split('-')[0].Trim();
-            //tambien pasar el id de la moneda
-            var selectedCurrencyId = picker.Split('-')[1].Trim();
+            // Obtener el nombre y el ID de la moneda seleccionada
+            var selectedCurrency = monedaSeleccionada.Nombre;
+            var selectedCurrencyId = monedaSeleccionada.Id.ToString();
+
+            // Pasar los valores a la siguiente página
             await Navigation.PushAsync(new Cambio(selectedCurrency, selectedCurrencyId));
         }
+
 
         private async void Button_Clicked_1(object sender, EventArgs e)
         {

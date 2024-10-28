@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyTakeOver.Views.ModificarMoneda">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="25" VerticalOptions="StartAndExpand">
+
+            <Label x:Name="LblMoneda" FontAttributes="Bold" FontSize="20" HorizontalTextAlignment="Center" TextColor="Black"/>
+
+            <StackLayout>
+                <Label Text="Precio Compra" FontAttributes="Bold" FontSize="14" TextColor="Black" />
+                <Entry x:Name="PCompra" Placeholder="10.80" FontSize="12"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Precio Venta" FontAttributes="Bold" FontSize="14" TextColor="Black" />
+                <Entry x:Name="PVenta" Placeholder="12.50" FontSize="12"/>
+            </StackLayout>
+
+            <!-- Botón Guardar -->
+            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand">
+                <Button x:Name="BtnEliminar" Text="Eliminar" BackgroundColor="Firebrick" CornerRadius="20" HeightRequest="40" FontSize="18" HorizontalOptions="FillAndExpand" Clicked="BtnEliminar_Clicked"/>
+                <Button x:Name="BtnActualizar" Text="Guardar" BackgroundColor="Green" CornerRadius="20" HeightRequest="40" FontSize="18" HorizontalOptions="FillAndExpand" Clicked="BtnActualizar_Clicked"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

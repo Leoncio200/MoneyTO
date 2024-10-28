@@ -5,9 +5,7 @@ namespace MoneyTakeOver.Views;
 
 public partial class Cambio : ContentPage
 {
-
-
-            private readonly MonedasViewModel _monedasViewModel;
+    private readonly MonedasViewModel _monedasViewModel;
 
 	public Cambio(string selectedCurrency, string selectedCurrencyId)
 	{
@@ -77,8 +75,48 @@ public partial class Cambio : ContentPage
         DisplayAlert("Confirmación", "Conversión aceptada.", "OK");
     }
 
+    private async void OnBuscarYAgregarTipoCambioClicked(object sender, EventArgs e)
+    {
+        string monedaBase = "USD"; // Puedes obtener esto del usuario o configuración
+        string monedaDestino = PckOrigenConvertir.SelectedItem.ToString(); // Selección del Picker
+
+        await _monedasViewModel.BuscarYAgregarTipoCambio(monedaBase, monedaDestino);
+    }
+
+
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await ConvertirMoneda();
+        try
+        {
+            var monedaBase = baseCurrencyLabel.Text;
+            var monedaDestino = PckOrigenConvertir.SelectedItem as Models.Monedas;
+
+            if (monedaDestino == null)
+            {
+                await DisplayAlert("Error", "Selecciona una moneda para convertir.", "OK");
+                return;
+            }
+
+            // Buscar y agregar el tipo de cambio
+            await _monedasViewModel.BuscarYAgregarTipoCambio(monedaBase, monedaDestino.Nombre);
+
+            // Ahora, realiza la conversión
+            var tipoCambio = await _monedasViewModel.GetTipoCambioById(monedaDestino.Id);
+            if (tipoCambio == null)
+            {
+                await DisplayAlert("Error", "No se encontró el tipo de cambio.", "OK");
+                return;
+            }
+
+            var cantidad = Convert.ToDecimal(cantidadInput.Text);
+            var resultado = tipoCambio.Value * cantidad;
+            resultadoLabel.Text = $"{resultado:C}";
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error en la conversión: {ex.Message}");
+            await DisplayAlert("Error", "Error al realizar la conversión.", "OK");
+        }
     }
+
 }

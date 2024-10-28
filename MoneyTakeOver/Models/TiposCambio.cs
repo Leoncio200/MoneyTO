@@ -18,5 +18,8 @@ namespace MoneyTakeOver.Models
 
         [Column(TypeName = "decimal(10, 2)")]
         public decimal TipoCambioVenta { get; set; }
+
+        // Propiedad de solo lectura para acceder al nombre de la moneda
+        public string NombreMoneda => Moneda?.Nombre ?? "Desconocido";
     }
 }
