@@ -4,88 +4,78 @@
              x:Class="MoneyTakeOver.Views.Configuracion"
              Title="Configuracion">
     <ScrollView>
-
         <StackLayout Padding="20" Spacing="15">
-        
-        <!-- Logo y título -->
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <Image Source="money_logo.png" WidthRequest="80" HeightRequest="80"/>
-            <Label Text="Información de la Empresa" 
-                   FontAttributes="Bold" 
-                   FontSize="24"
-                   HorizontalOptions="Center"/>
-        </StackLayout>
-        
-        <!-- Botón Agregar -->
-        <Button Text="Agregar" BackgroundColor="Green" TextColor="White" CornerRadius="20" Clicked="Button_Clicked"/>
-        
-            <CollectionView ItemsSource="{Binding Casas}">
-                <CollectionView.ItemTemplate>
+            <!-- Logo y título -->
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="money_logo.png" WidthRequest="80" HeightRequest="80"/>
+                <Label Text="Información de la Empresa" 
+                       FontAttributes="Bold" 
+                       FontSize="24"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+            
+            <!-- Botón Agregar -->
+            <Button Text="Agregar" BackgroundColor="Green" TextColor="White" CornerRadius="20" Clicked="Button_Clicked"/>
+            
+            <!-- ListView para mostrar la lista de Casas -->
+            <ListView x:Name="CasasListView" ItemsSource="{Binding Casas}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <!-- Tarjeta de información -->
-                        <Frame BorderColor="LightGray" CornerRadius="10" Padding="15">
-                            <StackLayout Spacing="10">
+                        <!-- Tarjeta de información con SwipeView -->
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <!-- Swipe para eliminar -->
+                                    <SwipeItem
+                                        Text="Eliminar"
+                                        BackgroundColor="Red"
+                                        IconImageSource="delete_icon.png"
+                                        Command="{Binding BindingContext.EliminarCasaCommand, Source={x:Reference CasasListView}}"
+                                        CommandParameter="{Binding .}" />
+                                </SwipeView.RightItems>
+                                
+                                <Frame BorderColor="LightGray" CornerRadius="10" Padding="15">
+                                    <StackLayout Spacing="10">
+                                        <!-- Logo pequeño -->
+                                        <Image Source="small_logo.png" WidthRequest="50" HeightRequest="50"/>
+                                        
+                                        <!-- Nombre de empresa y ubicación -->
+                                        <StackLayout>
+                                            <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18"/>
+                                            <Label Text="{Binding Ciudad}" FontAttributes="Bold" FontSize="16" TextColor="Gray"/>
+                                        </StackLayout>
 
+                                        <!-- Ubicación y horario -->
+                                        <StackLayout>
+                                            <Label FontSize="14">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Estado: {0} a {1}">
+                                                        <Binding Path="Ciudad"/>
+                                                        <Binding Path="Estado"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label FontSize="14">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Horario: {0} a {1}">
+                                                        <Binding Path="HInicio"/>
+                                                        <Binding Path="HCierre"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Text="{Binding Direccion}" FontSize="14"/>
+                                        </StackLayout>
 
-        <!-- ListView para mostrar la lista de Casas -->
-        <ListView x:Name="CasasListView" ItemsSource="{Binding Casas}" HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <!-- Tarjeta de información con SwipeView -->
-                    <ViewCell>
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <!-- Swipe para eliminar -->
-                                <SwipeItem
-                                    Text="Eliminar"
-                                    BackgroundColor="Red"
-                                    IconImageSource="delete_icon.png"
-                                    Command="{Binding BindingContext.EliminarCasaCommand, Source={x:Reference CasasListView}}"
-                                    CommandParameter="{Binding .}" />
-                            </SwipeView.RightItems>
-                            
-                            <Frame BorderColor="LightGray" CornerRadius="10" Padding="15">
-                                <StackLayout Spacing="10">
-                                    <!-- Logo pequeño -->
-                                    <Image Source="small_logo.png" WidthRequest="50" HeightRequest="50"/>
-
-                                    <!-- Nombre de empresa y ubicación -->
-                                    <StackLayout>
-                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18"/>
-                                        <Label Text="{Binding Ciudad}" FontAttributes="Bold" FontSize="16" TextColor="Gray"/>
+                                        <!-- Botón de edición -->
+                                        <Button Text="Editar" BackgroundColor="Green" TextColor="White" CornerRadius="20" 
+                                                Clicked="OnEditButtonClicked" CommandParameter="{Binding .}"/>
                                     </StackLayout>
-
-                                    <!-- Ubicación y horario -->
-                                    <StackLayout>
-                                        <Label FontSize="14">
-                                            <Label.Text>
-                                                <MultiBinding StringFormat="Estado: {0} a {1}">
-                                                    <Binding Path="Ciudad"/>
-                                                    <Binding Path="Estado"/>
-                                                </MultiBinding>
-                                            </Label.Text>
-                                        </Label>
-                                        <Label FontSize="14">
-                                            <Label.Text>
-                                                <MultiBinding StringFormat="Horario: {0} a {1}">
-                                                    <Binding Path="HInicio"/>
-                                                    <Binding Path="HCierre"/>
-                                                </MultiBinding>
-                                            </Label.Text>
-                                        </Label>
-                                        <Label Text="{Binding Direccion}" FontSize="14"/>
-                                    </StackLayout>
-
-                                    <!-- Botón de edición -->
-                                    <Button Text="Editar" BackgroundColor="Green" TextColor="White" CornerRadius="20" 
-                                            Clicked="OnEditButtonClicked" CommandParameter="{Binding .}"/>
-                                </StackLayout>
-                            </Frame>
-                        </SwipeView>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
-   </ScrollView>
+                                </Frame>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
