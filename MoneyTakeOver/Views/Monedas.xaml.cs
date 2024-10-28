@@ -25,9 +25,8 @@ namespace MoneyTakeOver.Views
         {
             try
             {
-                await _monedasViewModel.GetDivisas();
-                MonedasListView.ItemsSource =_monedasViewModel.Divisas;
-                Console.WriteLine(_monedasViewModel.Divisas);
+                await _monedasViewModel.GetDatosAsync();
+                //Console.WriteLine(_monedasViewModel.Divisas);
             }
             catch (Exception ex)
             {

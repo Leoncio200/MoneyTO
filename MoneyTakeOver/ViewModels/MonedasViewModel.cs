@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using MoneyTakeOver.Models;
 using MoneyTakeOver.Helpers;
+using MoneyTakeOver.Utilidades;
 using MoneyTakeOver.DataAccess;
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,8 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Text;
 using System.Net;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace MoneyTakeOver.ViewModels
 {
@@ -325,23 +328,24 @@ namespace MoneyTakeOver.ViewModels
         }
 
         //obtener el valor de tipo de cambio por ID
-      public async Task<decimal?> GetTipoCambioById(int monedaId)
-{
-    try
-    {
-        var tipoCambio = await _dbContext.TiposCambio
-            .Where(tc => tc.MonedaId == monedaId)
-            .Select(tc => tc.TipoCambioVenta) // Puedes seleccionar el valor específico si es el único necesario
-            .FirstOrDefaultAsync();
+        public async Task<decimal?> GetTipoCambioById(int monedaId)
+        {
+            try
+            {
+                var tipoCambio = await _dbContext.TiposCambio
+                    .Where(tc => tc.MonedaId == monedaId)
+                    .Select(tc => tc.TipoCambioVenta) // Puedes seleccionar el valor específico si es el único necesario
+                    .FirstOrDefaultAsync();
 
-        return tipoCambio; // Devolver el tipo de cambio si existe
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error al obtener el tipo de cambio: {ex.Message}");
-        return null; // Devuelve null si ocurre un error
-    }
-}
+                return tipoCambio; // Devolver el tipo de cambio si existe
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener el tipo de cambio: {ex.Message}");
+                return null; // Devuelve null si ocurre un error
+            }
+        }
+
 
         public async Task ActualizarTipoCambio(int monedaId, decimal nuevoTipoCompra, decimal nuevoTipoVenta)
         {
@@ -371,53 +375,60 @@ namespace MoneyTakeOver.ViewModels
             }
         }
 
-
         //METODOS HARD CODEADOS
 
         public async Task AgregarTodasLasMonedas()
         {
             try
             {
-                // Lista de monedas predefinidas
-                var monedas = new List<Monedas>
-                {
-                    new Monedas {  Id = 1, Nombre = "Peso mexicano (MXN)", ActivoDivisa = true },
-                new Monedas { Id = 2, Nombre = "Dólar estadounidense (USD)", ActivoDivisa = true },
-                new Monedas { Id = 3, Nombre = "Euro (EUR)", ActivoDivisa = true },
-                new Monedas { Id = 4, Nombre = "Libra esterlina (GBP)", ActivoDivisa = true },
-                new Monedas { Id = 5, Nombre = "Dólar canadiense (CAD)", ActivoDivisa = true },
-                new Monedas { Id = 6, Nombre = "Franco suizo (CHF)", ActivoDivisa = true },
-                new Monedas { Id = 7, Nombre = "Yuan chino (CNY)", ActivoDivisa = true },
-                new Monedas { Id = 8, Nombre = "Corona danesa (DKK)", ActivoDivisa = true },
-                new Monedas { Id = 9, Nombre = "Corona noruega (NOK)", ActivoDivisa = true },
-                new Monedas { Id = 10, Nombre = "Corona sueca (SEK)", ActivoDivisa = true },
-                new Monedas { Id = 11, Nombre = "Rublo ruso (RUB)", ActivoDivisa = true },
-                new Monedas { Id = 12, Nombre = "Real brasileño (BRL)", ActivoDivisa = true },
-                new Monedas { Id = 13, Nombre = "Dólar australiano (AUD)", ActivoDivisa = true },
-                new Monedas { Id = 14, Nombre = "Dólar neozelandés (NZD)", ActivoDivisa = true },
-                new Monedas { Id = 15, Nombre = "Rupia india (INR)", ActivoDivisa = true },
-                new Monedas { Id = 16, Nombre = "Won surcoreano (KRW)", ActivoDivisa = true },
-                new Monedas { Id = 17, Nombre = "Dólar de Hong Kong (HKD)", ActivoDivisa = true },
-                new Monedas { Id = 18, Nombre = "Dólar de Singapur (SGD)", ActivoDivisa = true },
-                new Monedas { Id = 19, Nombre = "Rand sudafricano (ZAR)", ActivoDivisa = true },
-                new Monedas { Id = 20, Nombre = "Peso cubano (CUP)", ActivoDivisa = true },
-                    
-                    // Agrega las demás monedas según sea necesario
-                };
+               
+                var symbols = File.ReadAllText("MoneyTakeOver.Utilidades.Symbols.txt");
+;
+                var monedas = JsonConvert.DeserializeObject<List<Monedas>>(symbols);
 
-                foreach (var moneda in monedas)
+
+                //var monedas = new List<Monedas>
+                //{
+                //    new Monedas {  Id = 1, Nombre = "Peso mexicano (MXN)", ActivoDivisa = true },
+                //new Monedas { Id = 2, Nombre = "Dólar estadounidense (USD)", ActivoDivisa = true },
+                //new Monedas { Id = 3, Nombre = "Euro (EUR)", ActivoDivisa = true },
+                //new Monedas { Id = 4, Nombre = "Libra esterlina (GBP)", ActivoDivisa = true },
+                //new Monedas { Id = 5, Nombre = "Dólar canadiense (CAD)", ActivoDivisa = true },
+                //new Monedas { Id = 6, Nombre = "Franco suizo (CHF)", ActivoDivisa = true },
+                //new Monedas { Id = 7, Nombre = "Yuan chino (CNY)", ActivoDivisa = true },
+                //new Monedas { Id = 8, Nombre = "Corona danesa (DKK)", ActivoDivisa = true },
+                //new Monedas { Id = 9, Nombre = "Corona noruega (NOK)", ActivoDivisa = true },
+                //new Monedas { Id = 10, Nombre = "Corona sueca (SEK)", ActivoDivisa = true },
+                //new Monedas { Id = 11, Nombre = "Rublo ruso (RUB)", ActivoDivisa = true },
+                //new Monedas { Id = 12, Nombre = "Real brasileño (BRL)", ActivoDivisa = true },
+                //new Monedas { Id = 13, Nombre = "Dólar australiano (AUD)", ActivoDivisa = true },
+                //new Monedas { Id = 14, Nombre = "Dólar neozelandés (NZD)", ActivoDivisa = true },
+                //new Monedas { Id = 15, Nombre = "Rupia india (INR)", ActivoDivisa = true },
+                //new Monedas { Id = 16, Nombre = "Won surcoreano (KRW)", ActivoDivisa = true },
+                //new Monedas { Id = 17, Nombre = "Dólar de Hong Kong (HKD)", ActivoDivisa = true },
+                //new Monedas { Id = 18, Nombre = "Dólar de Singapur (SGD)", ActivoDivisa = true },
+                //new Monedas { Id = 19, Nombre = "Rand sudafricano (ZAR)", ActivoDivisa = true },
+                //new Monedas { Id = 20, Nombre = "Peso cubano (CUP)", ActivoDivisa = true },
+
+                //    // Agrega las demás monedas según sea necesario
+                //};
+
+                if (monedas != null)
                 {
-                    // Verificar si la moneda ya existe en la base de datos
-                    var existeMoneda = await _dbContext.Monedas.AnyAsync(m => m.Nombre == moneda.Nombre);
-                    if (!existeMoneda)
+                    foreach (var moneda in monedas)
                     {
-                        // Agregar la moneda si no existe
-                        _dbContext.Monedas.Add(moneda);
+                        // Verificar si la moneda ya existe en la base de datos
+                        var existeMoneda = await _dbContext.Monedas.AnyAsync(m => m.Nombre == moneda.Nombre);
+                        if (!existeMoneda)
+                        {
+                            // Agregar la moneda si no existe
+                            _dbContext.Monedas.Add(moneda);
+                        }
                     }
-                }
 
-                await _dbContext.SaveChangesAsync();
-                await DialogsHelper.ShowSuccessMessage("Success", "Todas las monedas han sido agregadas exitosamente.");
+                    await _dbContext.SaveChangesAsync();
+                    await DialogsHelper.ShowSuccessMessage("Success", "Todas las monedas han sido agregadas exitosamente.");
+                }
             }
             catch (Exception ex)
             {

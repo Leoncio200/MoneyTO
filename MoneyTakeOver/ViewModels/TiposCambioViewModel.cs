@@ -175,7 +175,7 @@ namespace MoneyTakeOver.ViewModels
             }
         }
 
-        public CasaViewModel(DivisasDbContext dbContext)
+        public TiposCambioViewModel(DivisasDbContext dbContext)
         {
             _dbContext = dbContext;
             TiposCambios = new ObservableCollection<TiposCambio>();

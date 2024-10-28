@@ -1,104 +1,34 @@
-﻿{
-    "monedas": [
-        {
-            "idSerie": "SF43718",
-            "moneda": "USD",
-            "descripcion": "Dólar estadounidense (USD) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46410",
-            "moneda": "EUR",
-            "descripcion": "Euro (EUR) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46407",
-            "moneda": "JPY",
-            "descripcion": "Yen japonés (JPY) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46406",
-            "moneda": "GBP",
-            "descripcion": "Libra esterlina (GBP) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF60653",
-            "moneda": "CAD",
-            "descripcion": "Dólar canadiense (CAD) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46412",
-            "moneda": "CHF",
-            "descripcion": "Franco suizo (CHF) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46414",
-            "moneda": "CNY",
-            "descripcion": "Yuan chino (CNY) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46403",
-            "moneda": "DKK",
-            "descripcion": "Corona danesa (DKK) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46402",
-            "moneda": "NOK",
-            "descripcion": "Corona noruega (NOK) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46401",
-            "moneda": "SEK",
-            "descripcion": "Corona sueca (SEK) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46413",
-            "moneda": "RUB",
-            "descripcion": "Rublo ruso (RUB) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46415",
-            "moneda": "BRL",
-            "descripcion": "Real brasileño (BRL) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF60654",
-            "moneda": "AUD",
-            "descripcion": "Dólar australiano (AUD) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF60655",
-            "moneda": "NZD",
-            "descripcion": "Dólar neozelandés (NZD) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46409",
-            "moneda": "INR",
-            "descripcion": "Rupia india (INR) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF60652",
-            "moneda": "KRW",
-            "descripcion": "Won surcoreano (KRW) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF60656",
-            "moneda": "HKD",
-            "descripcion": "Dólar de Hong Kong (HKD) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF60657",
-            "moneda": "SGD",
-            "descripcion": "Dólar de Singapur (SGD) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF60658",
-            "moneda": "ZAR",
-            "descripcion": "Rand sudafricano (ZAR) a Peso Mexicano (MXN)"
-        },
-        {
-            "idSerie": "SF46411",
-            "moneda": "CUP",
-            "descripcion": "Peso cubano (CUP) a Peso Mexicano (MXN)"
-        }
-    ]
-}
+﻿[
+    { "Id": 1, "Nombre": "Dólar estadounidense (USD)", "ActivoDivisa": true },
+    { "Id": 2, "Nombre": "Dírham de los Emiratos Árabes Unidos (AED)", "ActivoDivisa": true },
+    { "Id": 3, "Nombre": "Afgani afgano (AFN)", "ActivoDivisa": true },
+    { "Id": 4, "Nombre": "Lek albanés (ALL)", "ActivoDivisa": true },
+    { "Id": 5, "Nombre": "Dram armenio (AMD)", "ActivoDivisa": true },
+    { "Id": 6, "Nombre": "Florín de Curazao (ANG)", "ActivoDivisa": true },
+    { "Id": 7, "Nombre": "Kwanza angoleño (AOA)", "ActivoDivisa": true },
+    { "Id": 8, "Nombre": "Peso argentino (ARS)", "ActivoDivisa": true },
+    { "Id": 9, "Nombre": "Dólar australiano (AUD)", "ActivoDivisa": true },
+    { "Id": 10, "Nombre": "Manat azerbaiyano (AZN)", "ActivoDivisa": true },
+    { "Id": 11, "Nombre": "Marco convertible de Bosnia-Herzegovina (BAM)", "ActivoDivisa": true },
+    { "Id": 12, "Nombre": "Dólar barbadense (BBD)", "ActivoDivisa": true },
+    { "Id": 13, "Nombre": "Taka bangladesí (BDT)", "ActivoDivisa": true },
+    { "Id": 14, "Nombre": "Lev búlgaro (BGN)", "ActivoDivisa": true },
+    { "Id": 15, "Nombre": "Dinar bahreiní (BHD)", "ActivoDivisa": true },
+    { "Id": 16, "Nombre": "Franco burundés (BIF)", "ActivoDivisa": true },
+    { "Id": 17, "Nombre": "Dólar bermudeño (BMD)", "ActivoDivisa": true },
+    { "Id": 18, "Nombre": "Dólar de Brunéi (BND)", "ActivoDivisa": true },
+    { "Id": 19, "Nombre": "Boliviano (BOB)", "ActivoDivisa": true },
+    { "Id": 20, "Nombre": "Real brasileño (BRL)", "ActivoDivisa": true },
+    { "Id": 21, "Nombre": "Peso mexicano (MXN)", "ActivoDivisa": true },
+    { "Id": 22, "Nombre": "Euro (EUR)", "ActivoDivisa": true },
+    { "Id": 23, "Nombre": "Libra esterlina (GBP)", "ActivoDivisa": true },
+    { "Id": 24, "Nombre": "Yen japonés (JPY)", "ActivoDivisa": true },
+    { "Id": 25, "Nombre": "Dólar canadiense (CAD)", "ActivoDivisa": true },
+    { "Id": 26, "Nombre": "Franco suizo (CHF)", "ActivoDivisa": true },
+    { "Id": 27, "Nombre": "Yuan chino (CNY)", "ActivoDivisa": true },
+    { "Id": 28, "Nombre": "Peso colombiano (COP)", "ActivoDivisa": true },
+    { "Id": 29, "Nombre": "Rupia india (INR)", "ActivoDivisa": true },
+    { "Id": 30, "Nombre": "Rublo ruso (RUB)", "ActivoDivisa": true },
+    { "Id": 31, "Nombre": "Won surcoreano (KRW)", "ActivoDivisa": true },
+    { "Id": 32, "Nombre": "Rand sudafricano (ZAR)", "ActivoDivisa": true }
+]
