@@ -1,0 +1,23 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyTakeOver.Views.EditarMoneda"
+             NavigationPage.HasNavigationBar="False"
+             Title="Editar Moneda">
+    <StackLayout Padding="20" Spacing="15">
+        <Label Text="Editar Moneda" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,20"/>
+
+        <Label Text="Nombre de la Moneda" Margin="0,10,0,0"/>
+        <Entry Text="{Binding Moneda.Nombre}" IsEnabled="False" Margin="0,0,0,10"/> <!-- Solo lectura -->
+
+        <Label Text="Tipo de Cambio Compra" Margin="0,10,0,0"/>
+        <Entry Text="{Binding TipoCambioCompra}" Keyboard="Numeric" Margin="0,0,0,10"/>
+
+        <Label Text="Tipo de Cambio Venta" Margin="0,10,0,0"/>
+        <Entry Text="{Binding TipoCambioVenta}" Keyboard="Numeric" Margin="0,0,0,20"/>
+
+        <Button Text="Guardar Cambios"
+                BackgroundColor="Green"
+                Clicked="OnGuardarCambiosClicked"
+                Margin="0,20,0,0"/>
+    </StackLayout>
+</ContentPage>

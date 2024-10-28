@@ -20,7 +20,7 @@
 
 
         <Tab Title="Cambio" >
-            <ShellContent ContentTemplate="{DataTemplate views:Monedas}" />
+            <ShellContent ContentTemplate="{DataTemplate views:MonedasView}" />
         </Tab>
        
 

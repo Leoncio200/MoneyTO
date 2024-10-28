@@ -1,13 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MoneyTakeOver.Views.Monedas"
+             x:Class="MoneyTakeOver.Views.MonedasView"
              NavigationPage.HasNavigationBar="False">
     <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <Label Text="Lista de Monedas" 
                FontSize="24" 
                HorizontalOptions="Center"
-               FontAttributes="Bold" />
+               FontAttributes="Bold" 
+               Grid.Row="0"/>
 
         <ListView x:Name="MonedasListView" 
                   Margin="0,50,0,0"
@@ -18,38 +23,31 @@
                     <ViewCell>
                         <Grid Padding="10" ColumnSpacing="10" RowSpacing="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/> <!-- Toma todo el espacio disponible -->
+                                <ColumnDefinition Width="Auto"/> <!-- Ancho automático para el precio de compra -->
+                                <ColumnDefinition Width="Auto"/> <!-- Ancho automático para el precio de venta -->
+                                <ColumnDefinition Width="Auto"/> <!-- Ancho automático para el botón -->
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <Label Text="{Binding NombreMoneda}" 
+                            <Label Text="{Binding Moneda.Nombre}" 
+                                   VerticalOptions="Center" 
                                    TextColor="Black"
-                                   Grid.Column="0"
-                                   Grid.RowSpan="2"
-                                   VerticalTextAlignment="Center"/>
-
+                                   HorizontalOptions="StartAndExpand"/>
                             <Label Text="{Binding TipoCambioCompra, StringFormat='Compra: {0:C}'}" 
-                                   Grid.Column="1"
-                                   Grid.Row="0"
-                                   HorizontalTextAlignment="Center"/>
-
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
                             <Label Text="{Binding TipoCambioVenta, StringFormat='Venta: {0:C}'}" 
-                                   Grid.Column="1"
-                                   Grid.Row="1"
-                                   HorizontalTextAlignment="Center"/>
-
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
                             <Button Text="Editar" 
-                                    ClassId="{Binding NombreMoneda}" 
-                                    Clicked="OnEditButtonClicked"
-                                    WidthRequest="90"
-                                    HeightRequest="50"
-                                    Grid.Column="2"
-                                    Grid.RowSpan="2"/>
+                                    CommandParameter="{Binding .}" 
+                                    Clicked="OnEditButtonClicked" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="End"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -20,6 +20,7 @@ namespace MoneyTakeOver.Views
             //eliminar las monedas de la bd
           //  _dbContext.Database.ExecuteSqlRaw("DELETE FROM Monedas");
             
+            
             _ = CargarMonedas();
             _ = CargarTiposCambio();
         }

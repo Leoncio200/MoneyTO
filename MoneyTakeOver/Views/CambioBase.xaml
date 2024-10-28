@@ -6,7 +6,7 @@
 
     <StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
-            <Image Source="money_logo.jpg" Aspect="AspectFit" HeightRequest="100"/>
+            <Image Source="money_logo.png" Aspect="AspectFit" HeightRequest="100"/>
         </StackLayout>
         
         <StackLayout VerticalOptions="FillAndExpand" Margin="20,30,20,0">

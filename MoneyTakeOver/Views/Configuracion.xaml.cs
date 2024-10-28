@@ -36,4 +36,30 @@ public partial class Configuracion : ContentPage
 	{
 		await Navigation.PushAsync(new AddConfiguracion());
 	}
+
+	//funcion de eliminar
+	private async void OnDeleteButtonClicked(object sender, EventArgs e)
+	{
+		//llamar a la funcion de eliminar
+		// var button = (Button)sender;
+		// var casa = (Casa)button.CommandParameter;
+	}
+	private async void OnEditButtonClicked(object sender, EventArgs e)
+{
+    // var button = (Button)sender;
+    // var casa = (Casa)button.CommandParameter;
+
+    // if (casa != null)
+    // {
+    //     // Navegar a la página de edición pasando el objeto Casa
+    //     await Navigation.PushAsync(new EditarConfiguracion(casa));
+    // }
+    // else
+    // {
+    //     await DisplayAlert("Error", "No se pudo obtener la información de la empresa para editar", "OK");
+    // }
+}
+
+
+
 }
